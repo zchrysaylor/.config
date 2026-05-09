@@ -17,5 +17,5 @@ if ! command -v hunk >/dev/null 2>&1; then
 fi
 
 # Create a new window in the current tmux session, starting in the current pane's
-# working directory, and run hunk diff there.
-tmux new-window -n "hunk-diff" -c "#{pane_current_path}" "hunk diff"
+# working directory, and keep the diff updated as files change.
+tmux new-window -n "hunk-diff" -c "#{pane_current_path}" "hunk diff --watch"
