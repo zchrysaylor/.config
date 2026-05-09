@@ -3,6 +3,7 @@
 DIRS=(
     "$HOME"
     "$HOME/Code"
+    "$HOME/Code/IdeaProjects/deliveryhero/"
     "$HOME/forge"
     "$HOME/Documents/geumgo"
 )

@@ -1,0 +1,23 @@
+{
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4-mini",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": false,
+  "enabledModels": [
+    "openai-codex/gpt-5.5",
+    "litellm/gpt-5-5-low",
+    "litellm/gpt-5-5-high",
+    "litellm/gpt-5-4-mini-medium",
+    "litellm/claude-sonnet-4-6",
+    "litellm/claude-opus-4-7",
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.4-mini",
+    "litellm/gpt-5-4-high",
+    "litellm/gemini-3-1-pro-preview",
+    "litellm/gemini-3-flash-preview"
+  ],
+  "packages": [
+    "npm:pi-rewind-hook"
+  ]
+}

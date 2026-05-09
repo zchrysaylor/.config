@@ -268,7 +268,41 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {
+          progress = {
+            suppress_on_insert = true,
+            display = {
+              format_message = function(msg)
+                if msg.lsp_client.name == 'jdtls' then
+                  return ''
+                end
+
+                return require('fidget.progress.display').default_format_message(msg)
+              end,
+              format_annote = function(msg)
+                if msg.lsp_client.name == 'jdtls' then
+                  return ''
+                end
+
+                return msg.title
+              end,
+            },
+          },
+          notification = {
+            view = {
+              render_message = function(msg, cnt)
+                if msg == '' then
+                  return ''
+                end
+
+                return cnt == 1 and msg or string.format('(%dx) %s', cnt, msg)
+              end,
+            },
+          },
+        },
+      },
     },
     config = function()
       -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
