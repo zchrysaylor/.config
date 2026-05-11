@@ -18,10 +18,7 @@
           "releaseDate": "2025-12-17",
           "knowledge": "2025-01-31",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 0.5,
             "output": 3,
@@ -37,10 +34,7 @@
           "releaseDate": "2026-02-19",
           "knowledge": "2025-01-31",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 2,
             "output": 12,
@@ -55,10 +49,7 @@
           "name": "GPT-5.5 Low",
           "releaseDate": "2026-04-23",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 5,
             "output": 30,
@@ -74,10 +65,7 @@
           "name": "GPT-5.5 High",
           "releaseDate": "2026-04-23",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 5,
             "output": 30,
@@ -93,10 +81,7 @@
           "name": "GPT-5.4 High",
           "releaseDate": "2026-03-05",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 2.5,
             "output": 15,
@@ -108,14 +93,11 @@
           "reasoningEffort": "high"
         },
         {
-          "id": "gpt-5-4-mini-medium",
-          "name": "GPT-5.4 Mini Medium",
+          "id": "gpt-5-4-mini-high",
+          "name": "GPT-5.4 Mini High",
           "releaseDate": "2026-03-05",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 0.75,
             "output": 4.5,
@@ -124,17 +106,14 @@
           },
           "contextWindow": 400000,
           "maxTokens": 128000,
-          "reasoningEffort": "medium"
+          "reasoningEffort": "high"
         },
         {
           "id": "claude-opus-4-7",
           "name": "Claude Opus 4.7",
           "releaseDate": "2026-04-16",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 5,
             "output": 25,
@@ -149,10 +128,7 @@
           "name": "Claude Sonnet 4.6",
           "releaseDate": "2026-02-17",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "cost": {
             "input": 3,
             "output": 15,
