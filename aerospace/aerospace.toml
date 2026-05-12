@@ -22,7 +22,7 @@ key-mapping.preset = 'qwerty'
 	run = 'layout floating'
 
 [[on-window-detected]]
-	if.app-name-regex-substring = 'finder'
+    if.app-id="com.apple.finder"
 	run = 'layout floating'
 
 [[on-window-detected]]

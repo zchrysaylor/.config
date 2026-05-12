@@ -10,4 +10,4 @@ if [[ "${1:-}" == "--refresh" ]]; then
   [[ -n "$result" ]] && printf '%s\n' "$result" > "$cache"
 fi
 
-[[ -f "$cache" ]] && cat "$cache" || printf '%s\n' "<leader>$"
+[[ -f "$cache" ]] && cat "$cache" || printf '%s\n' "<C-b>$"
