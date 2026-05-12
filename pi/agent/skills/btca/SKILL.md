@@ -20,8 +20,26 @@ BTCA, aka "The Better Context App", is a simple app defined as a skill file. The
 
 1. Use `~/.btca/agent/sandbox` as the destination for cloning and searching repos.
    - If the directory does not exist, first run `mkdir -p ~/.btca/agent/sandbox`
-2. If the repo(s) are already in the working directory `~/.btca/agent/sandbox`, update them. Otherwise clone them. Clone the main/master branch by default, unless the user asks for something else.
-3. Search the repo for the information you need. Make sure the follow the guidelines.
+2. If the repo(s) are already in the working directory `~/.btca/agent/sandbox`, update them. Otherwise clone them using a storage-saving checkout that contains only the latest files from the default branch.
+   - Do not clone full history. Use shallow, single-branch clones with no tags.
+   - Prefer commands like:
+     ```bash
+     GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --single-branch --no-tags --filter=blob:none <repo-url> ~/.btca/agent/sandbox/<repo-name>
+     ```
+   - This should leave a complete working tree for the latest default-branch commit, so the agent can search all current repo files, while avoiding historical objects/tags and avoiding automatic Git LFS downloads.
+   - If a repo is already cloned, update it without accumulating history:
+     ```bash
+     git -C ~/.btca/agent/sandbox/<repo-name> fetch --depth=1 --prune --no-tags origin
+     git -C ~/.btca/agent/sandbox/<repo-name> reset --hard origin/HEAD
+     git -C ~/.btca/agent/sandbox/<repo-name> clean -ffd
+     ```
+   - If `origin/HEAD` is missing or stale, refresh it with:
+     ```bash
+     git -C ~/.btca/agent/sandbox/<repo-name> remote set-head origin -a
+     ```
+   - Only fetch Git LFS files when the user's question specifically requires LFS-backed file contents.
+   - Sparse checkout is optional and should only be used when the user asks about specific subdirectories. For normal BTCA usage, keep the full latest working tree because the goal is to search all current files.
+3. Search the repo for the information you need. Make sure to follow the guidelines.
 
 ### End Goal
 

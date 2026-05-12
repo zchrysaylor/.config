@@ -1,6 +1,6 @@
 ---
 name: otv2-checklist
-description: Reviews code changes against the OTv2 release-safety checklist for canary safety, Liquibase migrations, DB/SNS/event compatibility, enums, validation, and load-test risks. Use when reviewing OTv2 changes, pull requests, diffs, Hunk sessions, or when the user mentions the OTv2 checklist.
+description: Reviews code changes against the OTv2 release-safety checklist for canary safety, Liquibase migrations, DB/SNS/event compatibility, enums, validation, and load-test risks. Use when the user mentions the OTv2 checklist.
 ---
 
 # OTv2 Checklist

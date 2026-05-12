@@ -134,15 +134,15 @@ export default function (pi: ExtensionAPI) {
     if (ctx.hasUI) ctx.ui.setHeader(undefined);
   });
 
-  pi.registerCommand('korean-pi-title', {
+  pi.registerCommand('hangul-title', {
     description: 'Enable the blue 파이 custom header',
     handler: async (_args, ctx) => {
       installHeader(ctx);
-      ctx.ui.notify('Korean Pi title enabled', 'info');
+      ctx.ui.notify('Hangul title enabled', 'info');
     },
   });
 
-  pi.registerCommand('korean-pi-title-builtin', {
+  pi.registerCommand('hangul-title-builtin', {
     description: "Restore pi's built-in header for this session",
     handler: async (_args, ctx) => {
       ctx.ui.setHeader(undefined);
