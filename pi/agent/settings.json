@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.74.0",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "lastChangelogVersion": "0.75.4",
+  "defaultProvider": "litellm",
+  "defaultModel": "gpt-5-5-low",
   "defaultThinkingLevel": "low",
   "hideThinkingBlock": false,
   "enabledModels": [
