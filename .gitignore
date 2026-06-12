@@ -4,3 +4,6 @@ opencode/opencode.jsonc
 opencode/tui.json
 opencode/tui.jsonc
 pi/agent/sessions
+pi/agent/trust.json
+pi/agent/auth.json
+hunk/state.json

@@ -3,8 +3,6 @@ import type { ExtensionAPI, ExtensionContext } from '@earendil-works/pi-coding-a
 
 const RESET = '\x1b[0m';
 const BOLD = '\x1b[1m';
-const MEDIUM_GREY: Rgb = [150, 150, 150];
-
 // const DEEP_BLUE: Rgb = [22, 83, 189];
 // const BLUE: Rgb = [48, 129, 247];
 // const SKY: Rgb = [93, 171, 255];
@@ -94,10 +92,9 @@ function projectName() {
 
 function renderHeader(width: number, phase: number, subtitleText: string) {
   const lines = TITLE_LINES.map((line, row) => gradientText(center(line, width), phase + row * 0.045));
-  const phrase = center('도련님, 귀환하시니 터미널이 다시 빛나옵니다.', width, 1);
   const subtitle = center(subtitleText, width);
 
-  return ['', ...lines, fg(MEDIUM_GREY, phrase), '', `${BOLD}${gradientText(subtitle, phase + 0.18)}${RESET}`, ''];
+  return ['', ...lines, '', `${BOLD}${gradientText(subtitle, phase + 0.18)}${RESET}`, ''];
 }
 
 export default function (pi: ExtensionAPI) {
