@@ -30,7 +30,7 @@ key-mapping.preset = 'qwerty'
     run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
-    if.app-name-regex-substring = 'ghostty'
+    if.app-id = 'com.mitchellh.ghostty'
     run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]

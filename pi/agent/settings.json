@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.75.4",
+  "lastChangelogVersion": "0.79.9",
   "defaultProvider": "litellm",
-  "defaultModel": "gpt-5-5-low",
-  "defaultThinkingLevel": "low",
+  "defaultModel": "gpt-5-4-high",
+  "defaultThinkingLevel": "high",
   "hideThinkingBlock": false,
   "enabledModels": [
     "openai-codex/gpt-5.5",
@@ -17,5 +17,6 @@
     "litellm/gemini-3-1-pro-preview",
     "litellm/gemini-3-flash-preview"
   ],
-  "packages": []
+  "packages": [],
+  "theme": "dark"
 }
