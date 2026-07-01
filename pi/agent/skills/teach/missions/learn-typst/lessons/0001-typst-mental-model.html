@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lesson 0001 — Typst's Mental Model</title>
+<style>
+  :root { --ink:#29231f; --paper:#fbf8f3; --muted:#7c7167; --accent:#b0562e; --teal:#2f7d76; --card:#fffdfa; --line:#eadccd; --code:#f5eee6; --good:#2f7d52; --bad:#a85668; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:linear-gradient(180deg,#fbf8f3,#f4ece2); color:var(--ink); font:18px/1.55 ui-serif, Georgia, serif; }
+  main { max-width: 980px; margin:0 auto; padding:44px 24px 72px; }
+  header { border-bottom:2px solid var(--line); padding-bottom:24px; margin-bottom:28px; }
+  .eyebrow { font:700 12px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-size: clamp(2rem, 5vw, 4rem); line-height:1; margin:.35em 0 .2em; letter-spacing:-.04em; }
+  .mission { max-width:760px; color:var(--muted); font-size:1.08rem; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px; margin:20px 0; box-shadow:0 8px 30px #5b35140d; }
+  h2 { margin:0 0 12px; color:var(--accent); font:800 1rem/1.2 ui-sans-serif, system-ui, sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+  h3 { margin:1.2em 0 .4em; }
+  code, pre, textarea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  pre { background:var(--code); border:1px solid var(--line); border-radius:14px; padding:16px; overflow:auto; font-size:.9rem; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; }
+  .mini { border-left:5px solid var(--teal); padding:12px 14px; background:#f6fbf9; border-radius:12px; }
+  button { border:0; border-radius:999px; padding:10px 16px; font:700 14px ui-sans-serif, system-ui, sans-serif; background:var(--teal); color:white; cursor:pointer; }
+  .choice { display:block; margin:8px 0; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:white; cursor:pointer; }
+  .feedback { margin-top:10px; font-weight:700; }
+  .good { color:var(--good); } .bad { color:var(--bad); }
+  textarea { width:100%; min-height:130px; border:1px solid var(--line); border-radius:14px; padding:14px; background:white; font-size:.9rem; }
+  a { color:#236f86; }
+  .callout { background:#fff4df; border-color:#ead0a9; }
+  @media print { body { background:white; font-size:12pt; } main { max-width:none; padding:0; } section { break-inside:avoid; box-shadow:none; } button, textarea { display:none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Typst · Lesson 0001</div>
+    <h1>The mental model: document as program</h1>
+    <p class="mission">Your goal is to rebuild <code>iyagi-template.typ</code> from scratch. The first win is learning to read Typst as a mixture of markup, code, and reusable content values.</p>
+  </header>
+
+  <section>
+    <h2>Why this matters</h2>
+    <p>The template looks like a design file, but structurally it is a small program: constants define a palette, helper functions render components, and one public function assembles the page. Typst is designed for this blend: ordinary document markup plus scripting and styling rules. See the official <a href="https://typst.app/docs/tutorial/">Typst tutorial</a>, <a href="https://typst.app/docs/reference/scripting/">scripting reference</a>, and <a href="https://typst.app/docs/reference/styling/">styling reference</a>.</p>
+  </section>
+
+  <section>
+    <h2>One thing to learn</h2>
+    <div class="grid">
+      <div class="mini"><strong>Markup mode</strong><br>Plain document content. This is where you write paragraphs, headings, emphasis, and normal prose.</div>
+      <div class="mini"><strong>Code mode</strong><br>Expressions, bindings, functions, conditionals, loops, and calls. From markup, <code>#</code> enters code.</div>
+      <div class="mini"><strong>Content values</strong><br>Document fragments can be passed as values. In the template API, <code>korean: [ ... ]</code> means “pass this content fragment.”</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Read this tiny template skeleton</h2>
+    <pre><code>// Private helper value.
+#let ink = rgb("#2b2622")
+
+// Public template function.
+#let sheet(title: "", body: []) = {
+  set page(paper: "a4", margin: 2cm)
+  set text(size: 11pt, fill: ink)
+
+  text(size: 22pt, weight: "bold", title)
+  body
+}
+
+#sheet(
+  title: "First Story",
+  body: [안녕하세요. This is reusable document content.],
+)</code></pre>
+    <p>Principle: <code>#let</code> defines values, functions turn repeated layout into reusable components, and <code>set</code> rules establish defaults for following content in their scope. This is the same pattern your real template uses with <code>ii-ink</code>, <code>ii-badge</code>, <code>ii-section</code>, and <code>iyagi-sheet</code>.</p>
+  </section>
+
+  <section>
+    <h2>Practice: classify the syntax</h2>
+    <p>Choose the best classification for <code>korean: [ ... ]</code> in the public API example.</p>
+    <label class="choice"><input type="radio" name="q1" value="a"> A variable declaration</label>
+    <label class="choice"><input type="radio" name="q1" value="b"> A named argument whose value is document content</label>
+    <label class="choice"><input type="radio" name="q1" value="c"> A table row</label>
+    <button onclick="checkQ1()">Check</button>
+    <div id="fb1" class="feedback"></div>
+  </section>
+
+  <section>
+    <h2>Your first rebuild step</h2>
+    <p>Create a scratch file anywhere you like, for example:</p>
+    <pre><code>mkdir -p /tmp/typst-iyagi
+$EDITOR /tmp/typst-iyagi/sheet.typ</code></pre>
+    <p>Then write your own version of the tiny skeleton above from memory, but change the names and values. Your target is not visual beauty yet; it is proving you understand:</p>
+    <ul>
+      <li>one helper constant,</li>
+      <li>one public function with named defaults,</li>
+      <li>one <code>set page</code> rule,</li>
+      <li>one <code>set text</code> rule,</li>
+      <li>one content parameter rendered inside the function.</li>
+    </ul>
+    <p>Compile with:</p>
+    <pre><code>typst compile /tmp/typst-iyagi/sheet.typ</code></pre>
+  </section>
+
+  <section>
+    <h2>Self-check before moving on</h2>
+    <p>Paste your scratch skeleton here and check whether it contains the five structural pieces. This is not a Typst compiler; it is a quick structural checklist.</p>
+    <textarea id="code" placeholder="#let ..."></textarea>
+    <p><button onclick="checkCode()">Run checklist</button></p>
+    <div id="fb2" class="feedback"></div>
+  </section>
+
+  <section class="callout">
+    <h2>Ask your teacher</h2>
+    <p>If any line feels magical, ask me about that exact line. Good next questions: “Why does <code>body: []</code> default to brackets?”, “When do I need <code>#</code>?”, or “How is <code>set text</code> scoped?”</p>
+    <p>Reference card: <a href="../reference/typst-template-building-card.html">Typst Template Building Card</a>.</p>
+  </section>
+</main>
+<script>
+function checkQ1() {
+  const picked = document.querySelector('input[name="q1"]:checked');
+  const fb = document.getElementById('fb1');
+  if (!picked) { fb.textContent = 'Pick an answer first.'; fb.className = 'feedback bad'; return; }
+  if (picked.value === 'b') { fb.textContent = 'Correct. The colon marks a named argument; the square brackets hold a content value.'; fb.className = 'feedback good'; }
+  else { fb.textContent = 'Not quite. Look for the colon: this is an argument passed into a function call.'; fb.className = 'feedback bad'; }
+}
+function checkCode() {
+  const s = document.getElementById('code').value;
+  const checks = [
+    ['helper constant with #let', /#let\s+[\w-]+\s*=/.test(s)],
+    ['function with named default', /#let\s+[\w-]+\s*\([^)]*:\s*[^)]*\)\s*=/.test(s)],
+    ['set page rule', /set\s+page\s*\(/.test(s)],
+    ['set text rule', /set\s+text\s*\(/.test(s)],
+    ['content default or content argument', /\[.*\]/s.test(s)]
+  ];
+  const html = checks.map(([label, ok]) => `${ok ? '✅' : '⬜'} ${label}`).join('<br>');
+  document.getElementById('fb2').innerHTML = html;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Typst Template Building Card</title>
+<style>
+  :root { --ink:#25211d; --muted:#6f665d; --paper:#fffaf2; --card:#ffffff; --accent:#b0562e; --line:#e7d8c8; --code:#f6efe7; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: ui-serif, Georgia, serif; color:var(--ink); background:var(--paper); line-height:1.45; }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 24px 48px; }
+  h1 { font-size: 2rem; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .subtitle { color:var(--muted); margin-bottom: 24px; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow: 0 1px 8px #00000008; }
+  h2 { color:var(--accent); margin:0 0 12px; font-size:1.1rem; text-transform:uppercase; letter-spacing:.08em; font-family: ui-sans-serif, system-ui, sans-serif; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  pre { background:var(--code); padding:14px; border-radius:12px; overflow:auto; border:1px solid var(--line); }
+  table { width:100%; border-collapse: collapse; }
+  th, td { text-align:left; padding:10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-family: ui-sans-serif, system-ui, sans-serif; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  a { color:#2f6f85; }
+  @media print { body { background:white; } main { max-width:none; padding:0; } section { break-inside:avoid; box-shadow:none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Typst Template Building Card</h1>
+  <p class="subtitle">A quick reference for rebuilding the Iyagi worksheet template from first principles.</p>
+
+  <section>
+    <h2>Three modes to recognize</h2>
+    <table>
+      <tr><th>Mode</th><th>What it is for</th><th>Common cue</th></tr>
+      <tr><td>Markup</td><td>Writing document content directly.</td><td>Plain text, headings, paragraphs.</td></tr>
+      <tr><td>Code</td><td>Evaluating expressions, defining variables/functions, conditionals, loops.</td><td><code>#</code> enters code from markup; <code>let</code>, <code>if</code>, function calls.</td></tr>
+      <tr><td>Content values</td><td>Passing document fragments around like data.</td><td><code>[...]</code> creates reusable content.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Template skeleton</h2>
+    <pre><code>// private helper value
+#let ink = rgb("#2b2622")
+
+// public template function
+#let sheet(title: "", body: []) = {
+  set page(paper: "a4", margin: 2cm)
+  set text(size: 11pt, fill: ink)
+
+  text(size: 22pt, weight: "bold", title)
+  body
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>Syntax patterns used constantly</h2>
+    <table>
+      <tr><th>Pattern</th><th>Meaning</th></tr>
+      <tr><td><code>#let name = value</code></td><td>Bind a value in code mode.</td></tr>
+      <tr><td><code>#let f(x, y: default) = ...</code></td><td>Define a function with positional and named/default parameters.</td></tr>
+      <tr><td><code>function(arg, named: value)</code></td><td>Call a function from code mode.</td></tr>
+      <tr><td><code>#function(...)</code></td><td>Call a function after entering code from markup.</td></tr>
+      <tr><td><code>set text(...)</code></td><td>Set defaults for later content in the current scope.</td></tr>
+      <tr><td><code>(a, b, c)</code></td><td>Array-like sequence used for palettes, rows, columns, etc.</td></tr>
+      <tr><td><code>(key: value)</code></td><td>Dictionary/record-like value used for structured data.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Official docs</h2>
+    <p>Ground syntax in the <a href="https://typst.app/docs/tutorial/">official tutorial</a>, <a href="https://typst.app/docs/reference/scripting/">scripting reference</a>, <a href="https://typst.app/docs/reference/styling/">styling reference</a>, and <a href="https://typst.app/docs/reference/layout/">layout reference</a>.</p>
+  </section>
+</main>
+</body>
+</html>
