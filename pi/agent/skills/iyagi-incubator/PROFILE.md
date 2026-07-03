@@ -1,6 +1,18 @@
-# Sejong Korean Level Guide
+# Korean Learner Profile
 
-Use this as an approximate vocabulary and complexity guide. A level in the user's prompt overrides the default in `PROFILE.md`.
+Update this file when the learner chooses persistent preferences.
+
+| Field | Value |
+|---|---|
+| Current Sejong level | 2A |
+| Preferred story length | Short |
+| Translation preference | Include English translation after the Korean story |
+| Vocabulary list preference | Include vocabulary list |
+| Practice question preference | Include practice questions |
+
+## Language Levels
+
+Use this as an approximate vocabulary and complexity guide. A level in the user's prompt overrides the default here in `PROFILE.md`.
 
 | Level | Rough meaning | Story guidance |
 |---|---|---|
@@ -13,9 +25,14 @@ Use this as an approximate vocabulary and complexity guide. A level in the user'
 | `4A` | Lower advanced | Richer descriptions, more nuanced emotions, opinions, and social situations; moderate use of abstract vocabulary. |
 | `4B` | Advanced | Comfortable handling of longer narratives, character development, complex situations, and common abstract topics while remaining accessible to intermediate learners. |
 
-## Vocabulary guardrails
+## Vocabulary Guardrails
 
 - Prefer high-frequency words and everyday settings.
 - Avoid slang, idioms, literary style, and specialized vocabulary unless the user asks.
 - Keep honorifics simple unless the target grammar requires them.
 - Introduce at most a few new words per story and explain them in the vocabulary list.
+
+## Notes
+
+- Valid levels for this skill: `1A`, `1B`, `2A`, `2B`, `3A`, `3B`, `4A`, `4B`.
+- A level named in the user's prompt overrides this profile for that response.
