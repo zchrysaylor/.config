@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 — The Vendor Configuration Model</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --ink:#1c1b19; --muted:#6b6559; --line:#e7e2d8;
+    --card:#ffffff; --accent:#b8391a; --accent2:#0b6b5f; --code-bg:#f4f1ea;
+    --kw:#b8391a; --str:#0b6b5f; --com:#9a927f; --warn-bg:#fff6e8; --warn-line:#e0a63a;
+    --ok-bg:#eef7f0; --ok-line:#3f9a5a; --kotlin-bg:#f2eefb; --kotlin-line:#7c5cc4;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#17150f; --ink:#eee9df; --muted:#a49a86; --line:#332f26;
+      --card:#201d16; --accent:#f0764f; --accent2:#4fd0bc; --code-bg:#0f0d09;
+      --kw:#f0764f; --str:#4fd0bc; --com:#8a8272; --warn-bg:#2a2213; --warn-line:#c9922f;
+      --ok-bg:#13251a; --ok-line:#3f9a5a; --kotlin-bg:#1e1830; --kotlin-line:#9b7ee0;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:0;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:48px 24px 96px}
+  header.mast{border-bottom:2px solid var(--ink); padding-bottom:18px; margin-bottom:8px}
+  .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700}
+  h1{font-size:32px; line-height:1.15; margin:.28em 0 .1em; letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:15px}
+  .mission{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent2);
+    padding:14px 18px; border-radius:8px; margin:24px 0; font-size:14.5px}
+  .mission b{color:var(--accent2)}
+  h2{font-size:22px; margin:44px 0 6px; letter-spacing:-.01em}
+  h2 .n{color:var(--accent); font-variant-numeric:tabular-nums; margin-right:.4em}
+  h3{font-size:17px; margin:26px 0 4px}
+  p{margin:.6em 0}
+  .lead{font-size:18px; color:var(--ink)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:.88em;
+    background:var(--code-bg); padding:.1em .35em; border-radius:4px}
+  pre{background:var(--code-bg); border:1px solid var(--line); border-radius:10px;
+    padding:16px 18px; overflow-x:auto; font-size:13px; line-height:1.55; margin:14px 0}
+  pre code{background:none; padding:0; font-size:13px}
+  .k{color:var(--kw); font-weight:600}
+  .s{color:var(--str)}
+  .c{color:var(--com); font-style:italic}
+  .file{display:block; font-size:11.5px; letter-spacing:.03em; color:var(--muted);
+    margin:0 0 -6px; font-family:"SF Mono",ui-monospace,monospace}
+  .callout{border-radius:10px; padding:13px 16px 13px 16px; margin:14px 0; font-size:14.5px}
+  .kotlin{background:var(--kotlin-bg); border:1px solid var(--kotlin-line)}
+  .kotlin .tag{color:var(--kotlin-line); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  .warn{background:var(--warn-bg); border:1px solid var(--warn-line)}
+  .warn .tag{color:var(--warn-line); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  .ok{background:var(--ok-bg); border:1px solid var(--ok-line)}
+  .ok .tag{color:var(--ok-line); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  table{border-collapse:collapse; width:100%; margin:16px 0; font-size:13.5px}
+  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted)}
+  td code{font-size:.84em}
+  .scope{display:flex; flex-direction:column; gap:0; margin:16px 0}
+  .scope .lvl{background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:10px 14px; margin:0 0 6px; position:relative}
+  .scope .lvl .pri{font-size:11px; color:var(--accent); font-weight:700; letter-spacing:.06em}
+  .scope .lvl b{font-size:15px}
+  .scope .arrow{text-align:center; color:var(--muted); font-size:13px; margin:-2px 0 4px}
+  .diagram{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin:16px 0}
+  .diagram .box{border:1.5px solid var(--accent2); border-radius:8px; padding:8px 12px; display:inline-block; font-size:13px; font-weight:600}
+  .fields{columns:2; column-gap:24px; font-size:13.5px; margin:8px 0}
+  .fields div{break-inside:avoid; padding:2px 0}
+  .fields .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle}
+  .op{background:var(--accent)} .dwh{background:var(--accent2)} .sys{background:var(--muted)}
+  .legend{font-size:12.5px; color:var(--muted); margin:6px 0 0}
+  .legend span{margin-right:16px}
+  footer{margin-top:56px; border-top:1px solid var(--line); padding-top:20px; font-size:14px; color:var(--muted)}
+  .quizbox{background:var(--card); border:2px dashed var(--accent); border-radius:12px; padding:18px 20px; margin:28px 0}
+  .quizbox h3{margin-top:0; color:var(--accent)}
+  a{color:var(--accent2)}
+  .cite{font-size:12px; color:var(--muted)}
+  @media print{
+    body{background:#fff; color:#000; font-size:11pt}
+    .wrap{max-width:100%; padding:0}
+    pre,.callout,.mission,.diagram,.quizbox,.scope .lvl{break-inside:avoid}
+    .fields{columns:2}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">log-vendor-management · Lesson 1 of the maintainer track</div>
+  <h1>The Vendor Configuration Model</h1>
+  <div class="sub">One data class, six optional sections, three scopes, four owners. Master this and half of VMS stops being mysterious.</div>
+</header>
+
+<div class="mission">
+  <b>Why this first?</b> Vendor configuration is the beating heart of VMS — it's what operators edit, what DWH syncs, what gets published to Order Processing, and what lives in that <code>configurations</code> JSONB column. Nearly every incident and PR you'll touch passes through this model. Get the shape in your head and you can read the rest of the service. This is your first tangible win: <b>look at any config field and know what section it lives in, who's allowed to write it, and whether changing it is safe.</b>
+</div>
+
+<p class="lead">A vendor's entire configuration is a single Kotlin <code>data class</code> called <code>PlatformVendorConfig</code>. It is not stored as columns — it's serialized to JSON and dropped into one JSONB column. That one fact drives most of the rules you'll learn later.</p>
+
+<h2><span class="n">1</span>The aggregate: <code>PlatformVendorConfig</code></h2>
+<p>Here is the actual class — the whole thing. Read it, then read the annotations.</p>
+
+<pre><span class="file">vendor-management-service/…/db/model/PlatformVendorConfig.kt</span><code><span class="c">@JsonIgnoreProperties(ignoreUnknown = true)</span>
+<span class="c">@JsonInclude(JsonInclude.Include.NON_EMPTY)</span>
+<span class="k">data class</span> PlatformVendorConfig(
+    <span class="k">val</span> orderProcessing: OrderProcessingConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> vendorAvailability: VendorAvailabilityConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> vendorMonitor: VendorMonitorConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> avoidableWaitingTime: AvoidableWaitingTimeConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> preparationTime: PreparationTimeConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> orderCancellationFees: OrderCancellationFeesConfiguration? = <span class="k">null</span>,
+    <span class="k">val</span> vendorAttributes: Map&lt;String, Any?&gt;? = <span class="k">null</span>
+) {
+    <span class="k">companion object</span> {
+        <span class="k">fun</span> empty() = PlatformVendorConfig(
+            orderProcessing = OrderProcessingConfiguration(),
+            <span class="c">/* …all six sections, non-null and empty… */</span>
+        )
+    }
+}</code></pre>
+
+<div class="callout kotlin">
+  <div class="tag">Kotlin ↔ Java</div>
+  <ul style="margin:.4em 0 0; padding-left:1.1em">
+    <li><b><code>data class</code></b> ≈ a Java <code>record</code>, but mutable-by-copy: you get <code>equals</code>/<code>hashCode</code>/<code>toString</code> <em>and</em> a generated <code>.copy(...)</code> (like Lombok <code>@With</code>). You'll use <code>.copy()</code> constantly — see §2.</li>
+    <li><b><code>val</code></b> = <code>final</code> field. Every field here is immutable. To "change" a config you build a new one with <code>.copy()</code>.</li>
+    <li><b>The <code>?</code></b> after a type (<code>OrderProcessingConfiguration?</code>) means <em>nullable</em>. Without it, the compiler forbids <code>null</code>. This is enforced — the build uses <code>-Xjsr305=strict</code>.</li>
+    <li><b><code>= null</code></b> is a <em>default argument</em>. Callers can omit any field. There's no builder and no telescoping constructors — named args + defaults replace both.</li>
+    <li><b><code>companion object</code></b> ≈ the <code>static</code> members of the class. <code>PlatformVendorConfig.empty()</code> is a static factory.</li>
+  </ul>
+</div>
+
+<h3>The mental model</h3>
+<p>Think of a config as a <b>bag of six optional feature-sections plus one dynamic map</b>:</p>
+<div class="diagram">
+  <span class="box">PlatformVendorConfig</span>
+  <div class="fields" style="margin-top:12px">
+    <div><span class="dot op"></span><code>orderProcessing</code> — accept timings, stacking, vehicle restrictions</div>
+    <div><span class="dot op"></span><code>avoidableWaitingTime</code> — AWT fees/exclusions</div>
+    <div><span class="dot op"></span><code>preparationTime</code> — prep intervals</div>
+    <div><span class="dot op"></span><code>orderCancellationFees</code> — cancellation fees</div>
+    <div><span class="dot dwh"></span><code>vendorAvailability</code> — check-in/out (mixed owner)</div>
+    <div><span class="dot dwh"></span><code>vendorMonitor</code> — grades &amp; monitor rules (mixed owner)</div>
+    <div><span class="dot dwh"></span><code>vendorAttributes</code> — arbitrary DWH fields (dynamic map)</div>
+  </div>
+  <p class="legend"><span><span class="dot op"></span>operator-owned</span><span><span class="dot dwh"></span>DWH-fed / mixed</span> — full ownership breakdown in §4</p>
+</div>
+<p>Any section can be <code>null</code> ("this vendor has no order-processing overrides"). That <code>null</code>-everywhere design is deliberate and it's a <b>maintenance rule</b>, not just a style — see §5.</p>
+
+<h2><span class="n">2</span>The persisted row &amp; the <code>.copy()</code> idiom</h2>
+<p>The config aggregate is wrapped by the <code>Configuration</code> entity — the actual DB row. Note it carries the identity keys (<code>lpvId</code>, <code>globalEntityId</code>, <code>platformVendorId</code>) and an optimistic-lock <code>@Version</code>.</p>
+
+<pre><span class="file">vendor-management-service/…/db/model/Configuration.kt</span><code><span class="c">@Table("configuration")</span>
+<span class="k">data class</span> Configuration(
+    <span class="c">@Id @Column</span> <span class="k">val</span> id: Long? = <span class="k">null</span>,
+    <span class="c">@Column("lpvId")</span> <span class="k">val</span> lpvId: String?,
+    <span class="c">@Column("globalEntityId")</span> <span class="k">val</span> globalEntityId: String,
+    <span class="c">@Column("platformVendorId")</span> <span class="k">val</span> platformVendorId: String?,
+    <span class="c">@Column</span> <span class="k">val</span> configurations: PlatformVendorConfig = PlatformVendorConfig(),
+    <span class="k">val</span> createdAt: Instant = Instant.now(),
+    <span class="k">val</span> modifiedAt: Instant = Instant.now(),
+    <span class="c">@Version @Column</span> <span class="k">val</span> version: Int = INITIAL_VERSION
+)</code></pre>
+
+<p>Because everything is <code>val</code> (immutable), updates are done by producing a new object. Watch how <code>enrichRestrictedVehiclesCountryCode</code> "edits" a deeply-nested field:</p>
+
+<pre><span class="file">Configuration.kt · enrichRestrictedVehiclesCountryCode (abridged)</span><code><span class="k">return this</span>.copy(
+    configurations = <span class="k">this</span>.configurations.copy(
+        orderProcessing = <span class="k">this</span>.configurations.orderProcessing?.copy(
+            restrictedVehicleIds = restrictedVehicles,
+            restrictedVehiclesCountryCode = <span class="c">/* … */</span>
+        )
+    )
+)</code></pre>
+
+<div class="callout kotlin">
+  <div class="tag">Kotlin ↔ Java</div>
+  <p style="margin:.3em 0"><b>Nested <code>.copy()</code> = immutable update.</b> Coming from Java you'd mutate a setter. Here you rebuild the object graph: copy the outer, whose <code>configurations</code> is a copy of the inner, whose <code>orderProcessing</code> is a copy with two fields changed. Unchanged fields are carried over automatically. This is the dominant "write" pattern in the whole service.</p>
+  <p style="margin:.3em 0"><b><code>?.copy()</code></b> — the <code>?.</code> is a <em>safe call</em>. If <code>orderProcessing</code> is <code>null</code>, the whole expression is <code>null</code> instead of throwing an NPE. The Java equivalent is a manual <code>if (x != null)</code> guard, done for you.</p>
+</div>
+
+<h2><span class="n">3</span>Three scopes, one resolution order</h2>
+<p>The same <code>configuration</code> table stores configs at three different <b>scopes</b>, distinguished by which identity columns are set. When VMS resolves the effective config for a vendor, it layers them in priority order:</p>
+
+<div class="scope">
+  <div class="lvl"><span class="pri">PRIORITY 1 — most specific</span><br><b>Platform-vendor level</b> — <code>lpvId</code> + <code>globalEntityId</code> + <code>platformVendorId</code> all set. One specific restaurant listing.</div>
+  <div class="arrow">▲ overrides ▲</div>
+  <div class="lvl"><span class="pri">PRIORITY 2</span><br><b>GEID level</b> — only <code>globalEntityId</code> set (<code>lpvId</code>/<code>platformVendorId</code> null). Applies to every vendor in a global entity. Built by <code>createPlatformConfiguration(geid)</code>.</div>
+  <div class="arrow">▲ overrides ▲</div>
+  <div class="lvl"><span class="pri">PRIORITY 3 — broadest</span><br><b>Physical-vendor level</b> — one kitchen (<code>lpvId</code>), shared by all its platform listings.</div>
+</div>
+
+<p>On top of these sit <b>default configuration templates</b> (<code>default_configuration</code> table), applied to vendors matching filter criteria — city, chain, or vertical — when a GEID opts in.</p>
+
+<div class="callout ok">
+  <div class="tag">Maintainer's tell</div>
+  <p style="margin:.3em 0">You can identify a config row's scope <em>just by reading its null columns</em>: all three keys set → platform-vendor; only <code>globalEntityId</code> → GEID-level; <code>platformVendorId</code> null but <code>lpvId</code> set → physical-vendor. When debugging "why does this vendor have setting X," the answer is almost always "it's inherited from a broader scope."</p>
+</div>
+
+<h2><span class="n">4</span>Who owns each field (the ownership map)</h2>
+<p>This is the part that saves you in code review. A field's <em>source</em> determines whether an operator PATCH may touch it. Writing to a DWH-owned field from the operator path is a bug.</p>
+
+<table>
+  <tr><th>Owner</th><th>How it's written</th><th>Representative fields</th></tr>
+  <tr><td><b>Operator</b><br><span class="cite">VBO UI / PATCH</span></td><td><code>PATCH /v3/…/configurations</code> (merge-patch+json)</td><td>most of <code>orderProcessing.*</code>, <code>checkOutEnabled</code>, <code>alwaysAvailableEnabled</code>, monitor rule <code>*.enabled</code></td></tr>
+  <tr><td><b>DWH</b><br><span class="cite">via VMCS</span></td><td>BigQuery → <code>dwh-configs</code> SQS → <code>merge()</code></td><td><code>checkInSupported</code>, <code>checkOutSupported</code>, <code>vendorGrade</code>, <code>isNewVendor</code>, monitor rule <code>*.supported</code>, <code>vendorAttributes.*</code></td></tr>
+  <tr><td><b>Hurrier map</b></td><td><code>hurrierCountriesToGlobalEntityIds</code> config</td><td><code>orderProcessing.restrictedVehiclesCountryCode</code> (when not set by operator)</td></tr>
+  <tr><td><b>Rooster</b></td><td><code>vehicle-type-updated</code> SQS</td><td>which <code>restrictedVehicleIds</code> are valid/active</td></tr>
+</table>
+
+<p>The <code>supported</code>-vs-<code>enabled</code> split inside <code>vendorAvailability</code> is the classic example. Look at the real logic that keeps them straight:</p>
+
+<pre><span class="file">VendorAvailabilityConfiguration.kt · computePropertyRules</span><code><span class="k">private fun</span> computePropertyRules(
+    isSupported: Boolean?,   <span class="c">// ← from DWH (read-only to operator)</span>
+    property: Boolean?,      <span class="c">// ← operator's toggle</span>
+    platformProperty: Boolean? = <span class="k">null</span>,
+    other: () -> Boolean?
+): Boolean? = <span class="k">when</span> {
+    isSupported <span class="k">in</span> listOf(<span class="k">null</span>, <span class="k">false</span>) -> <span class="k">false</span>   <span class="c">// not supported ⇒ force off</span>
+    property == <span class="k">false</span> -> property
+    platformProperty <span class="k">in</span> listOf(<span class="k">true</span>, <span class="k">false</span>) -> platformProperty
+    property == <span class="k">true</span> -> property
+    <span class="k">else</span> -> other()
+}</code></pre>
+
+<div class="callout kotlin">
+  <div class="tag">Kotlin ↔ Java</div>
+  <p style="margin:.3em 0"><b><code>when { … }</code></b> with no argument is a chained <code>if/else if</code>, but as an <em>expression</em> — it returns a value, which is assigned straight to the function (the <code>=</code> body). The first matching branch wins.</p>
+  <p style="margin:.3em 0"><b><code>other: () -> Boolean?</code></b> is a function parameter (a lambda). <code>other()</code> calls it. It's passed lazily so the fallback only runs if reached.</p>
+  <p style="margin:.3em 0"><b>Semantics that matter for maintenance:</b> if DWH says the platform doesn't <code>support</code> check-out, the operator's <code>enabled</code> toggle is overridden to <code>false</code>. Support gates enablement. You cannot enable what the platform can't do.</p>
+</div>
+
+<h2><span class="n">5</span>Two maintenance landmines already visible here</h2>
+
+<div class="callout warn">
+  <div class="tag">Landmine 1 — JSONB has no schema</div>
+  <p style="margin:.3em 0">Because the whole aggregate is serialized into one JSONB column, <b>the Kotlin data class <em>is</em> the schema</b> — there's no DB migration when you add a field. That freedom cuts both ways:</p>
+  <ul style="margin:.3em 0 0; padding-left:1.1em">
+    <li><b>Safe:</b> add a <em>new nullable</em> field with a default. Old rows deserialize fine (missing → <code>null</code>).</li>
+    <li><b>Dangerous:</b> renaming or removing a field silently breaks deserialization of every row written before the change. <code>@JsonIgnoreProperties(ignoreUnknown = true)</code> (see §1) means unknown JSON is dropped, not errored — so data loss is <em>silent</em>. Deprecate, never delete.</li>
+  </ul>
+</div>
+
+<div class="callout warn">
+  <div class="tag">Landmine 2 — a real bug in the tree, right now</div>
+  <p style="margin:.3em 0">In <code>Configuration.kt</code>, inside the <code>filterAndMerge</code> extension function, there's a leftover debug line shipping in production:</p>
+  <pre style="margin:.5em 0"><code>println(<span class="s">"keysToFilter:: "</span> + keysToFilter?.joinToString { <span class="s">" "</span> })</code></pre>
+  <p style="margin:.3em 0">A raw <code>println</code> bypasses structured logging, produces no context, and (per the security rules) risks leaking data into stdout unaudited. This is <em>exactly</em> the kind of thing your code reviews must catch. Note it — we'll revisit logging hygiene.</p>
+</div>
+
+<div class="callout kotlin">
+  <div class="tag">Kotlin ↔ Java — one more idiom to bank</div>
+  <p style="margin:.3em 0">That <code>filterAndMerge</code> is declared as <code>fun &lt;K,V&gt; Map&lt;K,V&gt;?.filterAndMerge(…)</code> — an <b>extension function on a nullable receiver</b>. It reads like a method on <code>Map</code> (<code>myMap.filterAndMerge(...)</code>) but is defined <em>outside</em> the class, and can be called even when <code>myMap</code> is <code>null</code> (the body checks <code>if (this == null)</code>). This codebase adds behavior to types via extensions <em>everywhere</em> — e.g. <code>Configuration.toConfigurationResponse()</code>, <code>Configuration.calculateFlags()</code>. When you see a "method" that isn't in the class body, it's an extension function, usually at the bottom of the file or in a <code>*Extensions.kt</code>.</p>
+</div>
+
+<div class="quizbox">
+  <h3>✋ Now come back to me for the quiz</h3>
+  <p style="margin:.4em 0">This is a <b>read + quiz</b> lesson. When you've read the above, tell your teacher (me, in the chat) <b>"ready for the quiz"</b> and I'll ask you 4–5 scenario questions — the kind you'll actually face in a PR or an incident — and give you immediate feedback. That feedback loop is where the learning locks in.</p>
+  <p style="margin:.4em 0"><b>Stuck on anything?</b> I'm your teacher for this codebase — ask me to expand any callout, show more of a file, or explain a Kotlin idiom you didn't recognize.</p>
+</div>
+
+<footer>
+  <p><b>Sources (read the real thing):</b><br>
+  <span class="cite">
+  • <code>db/model/PlatformVendorConfig.kt</code> — the aggregate<br>
+  • <code>db/model/Configuration.kt</code> — persisted row, <code>merge()</code>, <code>.copy()</code> patterns, the <code>println</code> bug<br>
+  • <code>db/model/VendorAvailabilityConfiguration.kt</code> — supported-vs-enabled logic<br>
+  • <code>AGENTS.md</code> → "Vendor Configuration Reference" &amp; "Configuration Source Reference"<br>
+  • Kotlin docs: <a href="https://kotlinlang.org/docs/data-classes.html">data classes</a> · <a href="https://kotlinlang.org/docs/null-safety.html">null safety</a> · <a href="https://kotlinlang.org/docs/extensions.html">extensions</a>
+  </span></p>
+  <p class="cite">Lesson 1 · Maintainer track · log-vendor-management</p>
+</footer>
+
+</div>
+</body>
+</html>

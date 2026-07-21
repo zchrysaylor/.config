@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference — Kotlin Idioms in VMS (for Java developers)</title>
+<style>
+  :root{--bg:#fbfaf8;--ink:#1c1b19;--muted:#6b6559;--line:#e7e2d8;--card:#fff;--accent:#b8391a;--accent2:#0b6b5f;--code:#f4f1ea;--kw:#b8391a;--str:#0b6b5f;--com:#9a927f}
+  @media (prefers-color-scheme:dark){:root{--bg:#17150f;--ink:#eee9df;--muted:#a49a86;--line:#332f26;--card:#201d16;--accent:#f0764f;--accent2:#4fd0bc;--code:#0f0d09;--kw:#f0764f;--str:#4fd0bc;--com:#8a8272}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+  .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-size:27px;margin:.2em 0 .1em;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+  h2{font-size:18px;margin:32px 0 4px;border-bottom:1px solid var(--line);padding-bottom:4px}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.86em;background:var(--code);padding:.08em .3em;border-radius:4px}
+  .k{color:var(--kw);font-weight:600}.s{color:var(--str)}.c{color:var(--com);font-style:italic}
+  td:first-child{white-space:nowrap}
+  .lesson{font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:1px 8px;margin-left:6px}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12.5px}
+  @media print{body{background:#fff;color:#000}.wrap{padding:0}tr{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="eyebrow">log-vendor-management · Reference</div>
+<h1>Kotlin idioms in VMS — a Java developer's cheat sheet</h1>
+<div class="sub">Every Kotlin construct that shows up in this codebase, with its Java analogue. Grows one row-group per lesson. Print it, keep it beside the editor.</div>
+
+<h2>Types &amp; nullability <span class="lesson">L1</span></h2>
+<table>
+<tr><th>Kotlin</th><th>Means</th><th>Java analogue / note</th></tr>
+<tr><td><code>val x</code></td><td>immutable binding</td><td><code>final</code> field/var</td></tr>
+<tr><td><code>var x</code></td><td>reassignable binding</td><td>ordinary field/var</td></tr>
+<tr><td><code>Foo?</code></td><td>nullable type</td><td>may hold <code>null</code>; non-<code>?</code> types <em>cannot</em>. Enforced (<code>-Xjsr305=strict</code>)</td></tr>
+<tr><td><code>x?.f()</code></td><td>safe call</td><td>returns <code>null</code> if <code>x</code> null instead of NPE — an auto <code>if(x!=null)</code></td></tr>
+<tr><td><code>x ?: y</code></td><td>elvis / default</td><td><code>x != null ? x : y</code></td></tr>
+<tr><td><code>x!!</code></td><td>assert non-null</td><td>throws if null — a red flag; grep for it in reviews</td></tr>
+<tr><td><code>x?.let { … }</code></td><td>run block if non-null</td><td><code>it</code> is the non-null value inside the block</td></tr>
+</table>
+
+<h2>Classes &amp; data <span class="lesson">L1</span></h2>
+<table>
+<tr><th>Kotlin</th><th>Means</th><th>Java analogue / note</th></tr>
+<tr><td><code>data class</code></td><td>value type</td><td>≈ <code>record</code> + generated <code>.copy(...)</code> (Lombok <code>@With</code>). Basis of every config/DTO</td></tr>
+<tr><td><code>.copy(f = v)</code></td><td>immutable update</td><td>new instance, only <code>f</code> changed, rest carried over. The dominant "write" pattern; nests: <code>a.copy(b = a.b.copy(c = …))</code></td></tr>
+<tr><td><code>= null</code> in ctor</td><td>default argument</td><td>replaces builders + telescoping ctors; combine with named args at call site</td></tr>
+<tr><td><code>companion object</code></td><td>static members</td><td>static factories/consts, e.g. <code>PlatformVendorConfig.empty()</code></td></tr>
+</table>
+
+<h2>Functions &amp; expressions <span class="lesson">L1</span></h2>
+<table>
+<tr><th>Kotlin</th><th>Means</th><th>Java analogue / note</th></tr>
+<tr><td><code>fun f() = expr</code></td><td>expression body</td><td>single-expression function; return type inferred</td></tr>
+<tr><td><code>when { a -> … }</code></td><td>chained if/else as <em>expression</em></td><td>first true branch wins; whole thing yields a value</td></tr>
+<tr><td><code>when(x){ … }</code></td><td>switch on <code>x</code> as expression</td><td>exhaustive over sealed types/enums; no fall-through</td></tr>
+<tr><td><code>() -> Boolean?</code></td><td>lambda param type</td><td><code>Supplier&lt;Boolean&gt;</code>; call with <code>param()</code>; passed lazily</td></tr>
+<tr><td><code>fun Type.name()</code></td><td>extension function</td><td>reads like a method on <code>Type</code> but defined outside it; often at file bottom or <code>*Extensions.kt</code></td></tr>
+<tr><td><code>fun Type?.name()</code></td><td>extension on nullable receiver</td><td>callable even when the receiver is null; body handles <code>this == null</code></td></tr>
+</table>
+
+<footer>
+  Seeded from Lesson 1 (config domain model). Each future lesson adds a row-group tagged with its lesson number.<br>
+  Deeper: <a href="https://kotlinlang.org/docs/null-safety.html">null safety</a> · <a href="https://kotlinlang.org/docs/data-classes.html">data classes</a> · <a href="https://kotlinlang.org/docs/extensions.html">extensions</a> · <a href="https://kotlinlang.org/docs/lambdas.html">lambdas</a>
+</footer>
+</div>
+</body>
+</html>
