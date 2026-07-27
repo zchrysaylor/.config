@@ -7,4 +7,5 @@ pi/agent/sessions
 pi/agent/trust.json
 pi/agent/auth.json
 pi/agent/settings.json
+pi/agent/run-history.jsonl
 hunk/state.json

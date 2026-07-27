@@ -123,7 +123,10 @@
           "cacheWrite": 1.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "anthropic.claude-opus-4-1-20250805-v1:0",
@@ -163,7 +166,10 @@
           "cacheWrite": 6.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "anthropic.claude-opus-4-6-v1",
@@ -184,6 +190,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -254,7 +263,10 @@
           "cacheWrite": 3.75
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "anthropic.claude-sonnet-4-6",
@@ -275,6 +287,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -298,6 +313,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -321,7 +339,10 @@
           "cacheWrite": 1.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "au.anthropic.claude-opus-4-6-v1",
@@ -342,6 +363,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -388,7 +412,10 @@
           "cacheWrite": 3.75
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "au.anthropic.claude-sonnet-4-6",
@@ -409,6 +436,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -432,6 +462,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -473,7 +506,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 163840,
-        "maxTokens": 81920
+        "maxTokens": 81920,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "deepseek.v3.2",
@@ -492,7 +528,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 163840,
-        "maxTokens": 81920
+        "maxTokens": 81920,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "eu.anthropic.claude-fable-5",
@@ -537,7 +576,10 @@
           "cacheWrite": 1.375
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "eu.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -557,7 +599,10 @@
           "cacheWrite": 6.875
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "eu.anthropic.claude-opus-4-6-v1",
@@ -578,6 +623,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -648,7 +696,10 @@
           "cacheWrite": 4.125
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "eu.anthropic.claude-sonnet-4-6",
@@ -669,6 +720,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -692,6 +746,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -740,7 +797,10 @@
           "cacheWrite": 1.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "global.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -760,7 +820,10 @@
           "cacheWrite": 6.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "global.anthropic.claude-opus-4-6-v1",
@@ -781,6 +844,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -851,7 +917,10 @@
           "cacheWrite": 3.75
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "global.anthropic.claude-sonnet-4-6",
@@ -872,6 +941,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -895,6 +967,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -918,7 +993,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 202752,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "google.gemma-3-4b-it",
@@ -958,7 +1036,10 @@
           "cacheWrite": 1.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "jp.anthropic.claude-opus-4-7",
@@ -1026,7 +1107,10 @@
           "cacheWrite": 3.75
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "jp.anthropic.claude-sonnet-4-6",
@@ -1047,6 +1131,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -1070,6 +1157,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -1246,7 +1336,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 256000,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.magistral-small-2509",
@@ -1266,7 +1359,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 40000
+        "maxTokens": 40000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.ministral-3-14b-instruct",
@@ -1285,7 +1381,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.ministral-3-3b-instruct",
@@ -1305,7 +1404,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 256000,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.ministral-3-8b-instruct",
@@ -1324,7 +1426,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.mistral-large-3-675b-instruct",
@@ -1344,7 +1449,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 256000,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.pixtral-large-2502-v1:0",
@@ -1383,7 +1491,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "mistral.voxtral-small-24b-2507",
@@ -1402,7 +1513,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 32000,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "moonshot.kimi-k2-thinking",
@@ -1421,7 +1535,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262143,
-        "maxTokens": 16000
+        "maxTokens": 16000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "moonshotai.kimi-k2.5",
@@ -1441,7 +1558,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262143,
-        "maxTokens": 16000
+        "maxTokens": 16000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "nvidia.nemotron-nano-12b-v2",
@@ -1461,7 +1581,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "nvidia.nemotron-nano-3-30b",
@@ -1480,7 +1603,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "nvidia.nemotron-nano-9b-v2",
@@ -1499,7 +1625,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "nvidia.nemotron-super-3-120b",
@@ -1518,7 +1647,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-5.4",
@@ -1539,6 +1671,9 @@
         },
         "contextWindow": 272000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh"
         }
@@ -1562,6 +1697,9 @@
         },
         "contextWindow": 272000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh"
         }
@@ -1585,6 +1723,9 @@
         },
         "contextWindow": 272000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh"
         }
@@ -1608,6 +1749,9 @@
         },
         "contextWindow": 272000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh"
         }
@@ -1631,6 +1775,9 @@
         },
         "contextWindow": 272000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh"
         }
@@ -1652,7 +1799,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-oss-120b-1:0",
@@ -1671,7 +1821,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-oss-20b",
@@ -1690,7 +1843,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-oss-20b-1:0",
@@ -1709,7 +1865,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-oss-safeguard-120b",
@@ -1728,7 +1887,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "openai.gpt-oss-safeguard-20b",
@@ -1747,7 +1909,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-235b-a22b-2507-v1:0",
@@ -1766,7 +1931,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-32b-v1:0",
@@ -1785,7 +1953,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 16384,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-coder-30b-a3b-v1:0",
@@ -1804,7 +1975,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262144,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-coder-480b-a35b-v1:0",
@@ -1823,7 +1997,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 131072,
-        "maxTokens": 65536
+        "maxTokens": 65536,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-coder-next",
@@ -1842,7 +2019,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 131072,
-        "maxTokens": 65536
+        "maxTokens": 65536,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-next-80b-a3b",
@@ -1861,7 +2041,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262000,
-        "maxTokens": 262000
+        "maxTokens": 262000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "qwen.qwen3-vl-235b-a22b",
@@ -1881,7 +2064,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 262000,
-        "maxTokens": 262000
+        "maxTokens": 262000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "us.anthropic.claude-fable-5",
@@ -1926,7 +2112,10 @@
           "cacheWrite": 1.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "us.anthropic.claude-opus-4-1-20250805-v1:0",
@@ -1966,7 +2155,10 @@
           "cacheWrite": 6.25
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "us.anthropic.claude-opus-4-6-v1",
@@ -1987,6 +2179,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -2057,7 +2252,10 @@
           "cacheWrite": 3.75
         },
         "contextWindow": 200000,
-        "maxTokens": 64000
+        "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "us.anthropic.claude-sonnet-4-6",
@@ -2078,6 +2276,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 64000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "max": "max"
         }
@@ -2101,6 +2302,9 @@
         },
         "contextWindow": 1000000,
         "maxTokens": 128000,
+        "compat": {
+          "supportsStrictMode": true
+        },
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "max": "max"
@@ -2221,7 +2425,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 1000000,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "zai.glm-4.7",
@@ -2240,7 +2447,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 204800,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "zai.glm-4.7-flash",
@@ -2259,7 +2469,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 131072
+        "maxTokens": 131072,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "zai.glm-5",
@@ -2278,10 +2491,14 @@
           "cacheWrite": 0
         },
         "contextWindow": 202752,
-        "maxTokens": 101376
+        "maxTokens": 101376,
+        "compat": {
+          "supportsStrictMode": true
+        }
       }
     ],
-    "checkedAt": 1784619349290
+    "checkedAt": 1784906776101,
+    "lastModified": 1784897325000
   },
   "openai": {
     "models": [
@@ -2302,7 +2519,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 8192,
-        "maxTokens": 8192
+        "maxTokens": 8192,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4-turbo",
@@ -2322,7 +2542,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4.1",
@@ -2342,7 +2565,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 1047576,
-        "maxTokens": 32768
+        "maxTokens": 32768,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4.1-mini",
@@ -2362,7 +2588,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 1047576,
-        "maxTokens": 32768
+        "maxTokens": 32768,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4.1-nano",
@@ -2382,7 +2611,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 1047576,
-        "maxTokens": 32768
+        "maxTokens": 32768,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4o",
@@ -2402,7 +2634,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4o-2024-05-13",
@@ -2422,7 +2657,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 4096
+        "maxTokens": 4096,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4o-2024-08-06",
@@ -2442,7 +2680,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4o-2024-11-20",
@@ -2462,7 +2703,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-4o-mini",
@@ -2482,7 +2726,10 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 16384
+        "maxTokens": 16384,
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "gpt-5",
@@ -2504,7 +2751,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": "minimal",
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2528,6 +2785,10 @@
         "maxTokens": 16384,
         "thinkingLevelMap": {
           "off": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2550,7 +2811,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2573,7 +2844,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": "minimal",
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2596,7 +2877,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": "minimal",
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2619,7 +2910,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": null,
+          "medium": null,
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2642,7 +2943,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": "none"
+          "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2665,7 +2976,17 @@
         "contextWindow": 128000,
         "maxTokens": 16384,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": null,
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2688,7 +3009,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2711,7 +3042,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2734,7 +3075,17 @@
         "contextWindow": 400000,
         "maxTokens": 128000,
         "thinkingLevelMap": {
-          "off": null
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2758,7 +3109,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2782,7 +3142,16 @@
         "maxTokens": 16384,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": null,
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2806,7 +3175,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2830,7 +3208,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2855,6 +3242,10 @@
         "thinkingLevelMap": {
           "off": null,
           "xhigh": "xhigh"
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2878,7 +3269,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2902,7 +3302,16 @@
         "maxTokens": 32000,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -2935,9 +3344,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
         },
         "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -2962,9 +3378,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
         },
         "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -2989,7 +3412,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -3022,9 +3454,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh"
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
         },
         "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3058,10 +3497,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
           "xhigh": "xhigh",
-          "minimal": null
+          "max": null
         },
         "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3095,9 +3540,16 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": null,
-          "xhigh": "xhigh",
           "minimal": null,
-          "low": null
+          "low": null,
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -3130,11 +3582,18 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
           "xhigh": "xhigh",
           "max": "max"
         },
         "compat": {
-          "supportsToolSearch": true
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
+          "supportsToolSearch": true,
+          "supportsExplicitPromptCacheMode": true
         }
       },
       {
@@ -3167,11 +3626,18 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
           "xhigh": "xhigh",
           "max": "max"
         },
         "compat": {
-          "supportsToolSearch": true
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
+          "supportsToolSearch": true,
+          "supportsExplicitPromptCacheMode": true
         }
       },
       {
@@ -3204,11 +3670,18 @@
         "maxTokens": 128000,
         "thinkingLevelMap": {
           "off": "none",
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
           "xhigh": "xhigh",
           "max": "max"
         },
         "compat": {
-          "supportsToolSearch": true
+          "supportsStrictMode": true,
+          "supportsOpenAIGrammarTools": true,
+          "supportsToolSearch": true,
+          "supportsExplicitPromptCacheMode": true
         }
       },
       {
@@ -3229,7 +3702,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 128000,
-        "maxTokens": 32000
+        "maxTokens": 32000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": "minimal",
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": "xhigh",
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o1",
@@ -3249,7 +3734,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o1-pro",
@@ -3269,7 +3766,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o3",
@@ -3289,7 +3798,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o3-deep-research",
@@ -3309,7 +3830,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": null,
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o3-mini",
@@ -3328,7 +3861,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o3-pro",
@@ -3348,7 +3893,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o4-mini",
@@ -3368,7 +3925,19 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": "low",
+          "medium": "medium",
+          "high": "high",
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       },
       {
         "id": "o4-mini-deep-research",
@@ -3388,10 +3957,23 @@
           "cacheWrite": 0
         },
         "contextWindow": 200000,
-        "maxTokens": 100000
+        "maxTokens": 100000,
+        "thinkingLevelMap": {
+          "off": null,
+          "minimal": null,
+          "low": null,
+          "medium": "medium",
+          "high": null,
+          "xhigh": null,
+          "max": null
+        },
+        "compat": {
+          "supportsStrictMode": true
+        }
       }
     ],
-    "checkedAt": 1784619349308
+    "checkedAt": 1784906776285,
+    "lastModified": 1784897350000
   },
   "openai-codex": {
     "models": [
@@ -3416,6 +3998,9 @@
         "thinkingLevelMap": {
           "xhigh": "xhigh",
           "minimal": "low"
+        },
+        "compat": {
+          "supportsOpenAIGrammarTools": true
         }
       },
       {
@@ -3451,6 +4036,7 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3478,6 +4064,7 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3514,6 +4101,7 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3551,6 +4139,7 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3588,6 +4177,7 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       },
@@ -3625,10 +4215,12 @@
           "minimal": "low"
         },
         "compat": {
+          "supportsOpenAIGrammarTools": true,
           "supportsToolSearch": true
         }
       }
     ],
-    "checkedAt": 1784619349307
+    "checkedAt": 1784906776103,
+    "lastModified": 1784897351000
   }
 }
