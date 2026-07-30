@@ -1,64 +1,79 @@
 onboarding = false
+
 [theme]
 name = "terminal"
 auto_switch = false
 
 [ui.toast]
-delivery = "system"
+delivery = "off"
 
 [terminal]
 # Match tmux's pane/window behavior by starting new terminals in the focused cwd.
 new_cwd = "follow"
 
 [keys]
+focus_pane_down = "prefix+j"
+focus_pane_left = "prefix+h"
+focus_pane_right = "prefix+l"
+focus_pane_up = "prefix+k"
 reload_config = "prefix+r"
 resize_mode = "prefix+shift+r"
-focus_pane_left = "prefix+h"
-focus_pane_down = "prefix+j"
-focus_pane_up = "prefix+k"
-focus_pane_right = "prefix+l"
-# tmux uses prefix+v for the modu note, so keep Herdr's vertical split available elsewhere.
-split_vertical = "prefix+alt+v"
+split_horizontal = 'prefix+"'
+split_vertical = "prefix+%"
 
 [[keys.command]]
-key = "prefix+shift+t"
-type = "pane"
+key = "prefix+shift+M"
+type = "popup"
 command = "nvim ~/Documents/geumgo/000-scratch/modu-dh.md"
+description = "open modu-dh.md"
+width = "90%"
+height = "90%"
 
 [[keys.command]]
-key = "prefix+v"
-type = "pane"
+key = "prefix+m"
+type = "popup"
 command = "nvim ~/Documents/geumgo/000-scratch/modu.md"
+description = "open modu.md"
+width = "90%"
+height = "90%"
 
 [[keys.command]]
 key = "prefix+shift+c"
 type = "shell"
-command = "herdr workspace create --cwd ~/.config --label .config --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME/.config" ".config"'
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "open scratch terminal"
+width = "80%"
+height = "80%"
 
 [[keys.command]]
 key = "prefix+shift+n"
 type = "shell"
-command = "herdr workspace create --cwd ~/Documents/geumgo --label geumgo --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Documents/geumgo" "geumgo"'
 
 [[keys.command]]
 key = "prefix+shift+w"
 type = "shell"
-command = "herdr workspace create --cwd ~/Code/IdeaProjects/deliveryhero --label deliveryhero --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Code/IdeaProjects/deliveryhero" "deliveryhero"'
 
 [[keys.command]]
 key = "prefix+shift+o"
 type = "shell"
-command = "herdr workspace create --cwd ~/Code/IdeaProjects/deliveryhero/log-vendor-order-management-application --label otv2 --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Code/IdeaProjects/deliveryhero/log-vendor-order-management-application" "otv2"'
 
 [[keys.command]]
 key = "prefix+shift+v"
 type = "shell"
-command = "herdr workspace create --cwd ~/Code/verin --label verin --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Code/verin" "verin"'
 
 [[keys.command]]
 key = "prefix+shift+backtick"
 type = "shell"
-command = "herdr workspace create --cwd ~ --label home --focus"
+command = '~/.config/scripts/herdr-sessionator.sh "$HOME" "home"'
 
 [[keys.command]]
 key = "prefix+shift+h"
@@ -66,4 +81,8 @@ type = "pane"
 command = "hunk diff --watch"
 
 [ui]
+mouse_capture = true
 show_agent_labels_on_pane_borders = true
+
+[ui.sound]
+enabled = false
