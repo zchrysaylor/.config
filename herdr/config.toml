@@ -12,6 +12,9 @@ delivery = "off"
 new_cwd = "follow"
 
 [keys]
+settings = "prefix+g"
+goto = "prefix+s"
+rename_tab = "prefix+comma"
 focus_pane_down = "prefix+j"
 focus_pane_left = "prefix+h"
 focus_pane_right = "prefix+l"

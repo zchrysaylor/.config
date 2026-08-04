@@ -2,6 +2,7 @@
 herdr/herdr-client.log
 herdr/herdr-server.log
 herdr/session.json
+herdr/release-notes.json
 hunk/state.json
 opencode/opencode.json
 opencode/opencode.jsonc
