@@ -1,8 +1,8 @@
 .DS_Store
 herdr/herdr-client.log
 herdr/herdr-server.log
-herdr/session.json
 herdr/release-notes.json
+herdr/session.json
 hunk/state.json
 opencode/opencode.json
 opencode/opencode.jsonc
@@ -15,3 +15,4 @@ pi/agent/sessions
 pi/agent/settings.json
 pi/agent/trust.json
 scripts/git-ai-outbox-check.sh
+scripts/herdr-litellm.sh

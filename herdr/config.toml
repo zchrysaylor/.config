@@ -79,6 +79,11 @@ type = "shell"
 command = '~/.config/scripts/herdr-sessionator.sh "$HOME" "home"'
 
 [[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = "~/.config/scripts/herdr-litellm.sh"
+
+[[keys.command]]
 key = "prefix+shift+h"
 type = "pane"
 command = "hunk diff --watch"
