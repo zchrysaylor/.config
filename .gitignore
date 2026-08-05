@@ -14,5 +14,6 @@ pi/agent/run-history.jsonl
 pi/agent/sessions
 pi/agent/settings.json
 pi/agent/trust.json
+pi/agent/models-store.json
 scripts/git-ai-outbox-check.sh
 scripts/herdr-litellm.sh
