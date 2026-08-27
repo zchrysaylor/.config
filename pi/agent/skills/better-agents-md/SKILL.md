@@ -1,6 +1,7 @@
 ---
 name: better-agents-md
-description: Refactors AGENTS.md files according to progressive disclosure principles. Use when the user asks to simplify, reorganize, split up, or improve an AGENTS.md file.
+description: Refactors AGENTS.md files according to progressive disclosure principles.
+disable-model-invocation: true
 ---
 
 Refactor the AGENTS.md file according to progressive disclosure principles.

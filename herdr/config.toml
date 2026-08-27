@@ -12,8 +12,10 @@ delivery = "off"
 new_cwd = "follow"
 
 [keys]
-settings = "prefix+g"
-goto = "prefix+s"
+goto = "prefix+g"
+settings = "prefix+s"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
 rename_tab = "prefix+comma"
 focus_pane_down = "prefix+j"
 focus_pane_left = "prefix+h"
@@ -44,6 +46,14 @@ height = "90%"
 key = "prefix+shift+c"
 type = "shell"
 command = '~/.config/scripts/herdr-sessionator.sh "$HOME/.config" ".config"'
+
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "~/.config/scripts/herdr-sessionator.sh"
+description = "fuzzy-pick workspace directory"
+width = "60%"
+height = "80%"
 
 [[keys.command]]
 key = "prefix+t"

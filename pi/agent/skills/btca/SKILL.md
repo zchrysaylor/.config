@@ -1,6 +1,7 @@
 ---
 name: btca
-description: Invoke this skill when the user says "use btca".
+description: Clones a repo to a sandbox dir for local filesearch instead of webfetch for docs.
+disable-model-invocation: true
 ---
 
 # BTCA

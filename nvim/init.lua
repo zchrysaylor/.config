@@ -162,7 +162,7 @@ rtp:prepend(lazypath)
 -- NOTE: [[ PLUGINS ]]
 -- TODO: move plugins to own file
 require('lazy').setup({
-  { 'norcalli/nvim-colorizer.lua', opts = {} },
+  { 'catgoose/nvim-colorizer.lua', event = 'BufReadPre', opts = {} },
   { 'NMAC427/guess-indent.nvim', opts = {} },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -480,6 +480,9 @@ require('lazy').setup({
             },
           },
         },
+
+        -- Official JetBrains Kotlin language server (currently alpha)
+        kotlin_lsp = {},
 
         ts_ls = {},
       }

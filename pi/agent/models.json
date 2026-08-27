@@ -1,7 +1,7 @@
 {
   "providers": {
     "litellm": {
-      "baseUrl": "http://localhost:5911",
+      "baseUrl": "http://localhost:36253",
       "api": "openai-completions",
       "apiKey": "litellm",
       "compat": {
