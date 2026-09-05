@@ -490,6 +490,7 @@ require('lazy').setup({
       -- Ensure the servers and tools above are installed
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'eslint_d', -- JavaScript and TypeScript formatter/linter
         'isort', -- Python import sorter
         'ruff', -- Python formatter
       })
@@ -557,13 +558,37 @@ require('lazy').setup({
           }
         end
       end,
+      formatters = {
+        eslint_d = {
+          condition = function(_, ctx)
+            local config = vim.fs.find({
+              'eslint.config.js',
+              'eslint.config.mjs',
+              'eslint.config.cjs',
+              'eslint.config.ts',
+              'eslint.config.mts',
+              'eslint.config.cts',
+              '.eslintrc',
+              '.eslintrc.js',
+              '.eslintrc.cjs',
+              '.eslintrc.json',
+              '.eslintrc.yaml',
+              '.eslintrc.yml',
+            }, { path = ctx.dirname, upward = true })[1]
+
+            return config ~= nil
+          end,
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'ruff_format' },
         json = { 'prettierd', 'prettier', stop_after_first = true },
         jsonc = { 'prettierd', 'prettier', stop_after_first = true },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'eslint_d', 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'eslint_d', 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'eslint_d', 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'eslint_d', 'prettierd', 'prettier', stop_after_first = true },
         yaml = { 'prettierd', 'prettier', stop_after_first = true },
         markdown = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
