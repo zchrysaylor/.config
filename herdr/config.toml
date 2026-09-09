@@ -1,19 +1,42 @@
+# Herdr configuration
+# Stowed in ~/.config/herdr/config.toml.
+# Full reference: https://herdr.dev/docs/config-reference/
+
+# Show first-run setup on startup. Missing or true shows onboarding.
 onboarding = false
 
+# -----------------------------------------------------------------------------
+# Theme
+# -----------------------------------------------------------------------------
+
 [theme]
+# Built-in theme name.
 name = "terminal"
+
+# Follow the host terminal's light/dark appearance and switch themes.
 auto_switch = false
 
-[ui.toast]
-delivery = "off"
+[theme.custom]
+# Highlight and selection accent.
+accent = "#c6a0f6"
+
+# -----------------------------------------------------------------------------
+# Terminal
+# -----------------------------------------------------------------------------
 
 [terminal]
+# Executable used for new interactive panes. Empty uses $SHELL, then /bin/sh.
+default_shell = "zsh"
+
 # Match tmux's pane/window behavior by starting new terminals in the focused cwd.
 new_cwd = "follow"
 
+# -----------------------------------------------------------------------------
+# Keybindings
+# -----------------------------------------------------------------------------
+
 [keys]
-goto = "prefix+g"
-settings = "prefix+s"
+last_pane = "prefix+;"
 navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 rename_tab = "prefix+comma"
@@ -25,7 +48,13 @@ reload_config = "prefix+r"
 resize_mode = "prefix+shift+r"
 split_horizontal = 'prefix+"'
 split_vertical = "prefix+%"
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
 
+# Custom commands use the normal binding syntax. Types are `shell` for a
+# detached process, `pane` for a temporary pane, `popup` for a modal terminal,
+# and `plugin_action` for an installed plugin action. Popup commands may also
+# specify width and height in cells or percentages.
 [[keys.command]]
 key = "prefix+shift+M"
 type = "popup"
@@ -89,7 +118,7 @@ type = "shell"
 command = '~/.config/scripts/herdr-sessionator.sh "$HOME" "home"'
 
 [[keys.command]]
-key = "prefix+shift+l"
+key = "prefix+*"
 type = "shell"
 command = "~/.config/scripts/herdr-litellm.sh"
 
@@ -98,9 +127,40 @@ key = "prefix+shift+h"
 type = "pane"
 command = "hunk diff --watch"
 
+# -----------------------------------------------------------------------------
+# UI and sidebar
+# -----------------------------------------------------------------------------
+
 [ui]
 mouse_capture = true
 show_agent_labels_on_pane_borders = true
 
+# Modifier that passes right-click gestures through to pane apps. Accepts ctrl,
+# alt, cmd, super, meta, hyper, or + combinations; shift is unsupported.
+# Empty disables passthrough.
+right_click_passthrough_modifier = "ctrl"
+
+# Ask for confirmation before closing a workspace.
+confirm_close = true
+
+# Ask for a name before interactively creating a workspace.
+prompt_new_workspace_name = true
+
+# Accent color for highlights, borders, and navigation UI. Accepts #rrggbb,
+# named colors, or rgb(r,g,b).
+accent = "#c6a0f6"
+
+agent_panel_sort = "priority"
+
+[ui.toast]
+# Popup delivery: "off", in-app "herdr", outer-terminal "terminal", or direct
+# OS "system" notifications.
+delivery = "off"
+
+# -----------------------------------------------------------------------------
+# Sound
+# -----------------------------------------------------------------------------
+
 [ui.sound]
+# Play sounds when Agents change state in background workspaces.
 enabled = false
