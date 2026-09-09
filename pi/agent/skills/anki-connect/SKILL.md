@@ -26,6 +26,20 @@ jq -n --arg key "${ANKI_CONNECT_API_KEY:-}" \
 
 Use `deckNames` instead of `version` to list decks. Do not add `jq -e`: successful results can be `null` or `false`.
 
+## Read-only helpers
+
+Prefer these scripts over rewriting request code. Paths below are relative to this skill directory; both require Bash, curl, and jq.
+
+```bash
+scripts/deck-count.sh "Korean Vocabulary"
+scripts/fetch-notes.sh 'deck:"Korean Vocabulary"' > /tmp/anki-notes.json
+```
+
+- [deck-count.sh](scripts/deck-count.sh) takes an exact deck name and returns compact JSON with separate `cards` and `notes` totals, **including subdecks** and suspended/buried cards. Unknown decks fail rather than returning zero. Anki's reserved search names `current` and `filtered` are rejected.
+- [fetch-notes.sh](scripts/fetch-notes.sh) takes any nonempty Anki search query and emits the original `notesInfo` array (IDs, fields, tags, model, and card IDs). Fetches in batches of 500; no matches returns `[]`. Redirect large results to a file, then inspect only needed fields. No partial JSON is emitted if a batch fails.
+- Both support `--help`, use version 6 and optional `ANKI_CONNECT_API_KEY`, and exit nonzero on transport/API errors. Set `ANKI_CONNECT_URL` only for a configured nondefault endpoint; keep it on loopback unless remote access is explicitly approved. Each request times out after 30 seconds; neither script retries.
+- These are live reads, not atomic snapshots or backups. Re-fetch before writes; counts can change between requests. Note/card IDs are distinct, and sibling cards returned by `notesInfo` may live outside the queried deck.
+
 ## Safety and confirmation
 
 **Always request and receive confirmation before any operation that adds, modifies, or deletes notes or cards.** Ask once per logical operation, describing intent, scope, and affected count when known. Use `AskUserQuestion` if available; otherwise ask in chat. Read-only discovery and previews can precede confirmation.
