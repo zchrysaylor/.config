@@ -12,8 +12,12 @@ if [[ $# -ge 1 ]]; then
   cwd=$1
 else
   cwd=$(
-    fd . "${DIRS[@]}" --type=dir --max-depth=1 --full-path |
+    {
+      printf '%s\n' "$HOME/Code" "$HOME/forge"
+      fd . "${DIRS[@]}" --type=dir --max-depth=1 --full-path
+    } |
       sed "s|^$HOME/||" |
+      sort -u |
       sk --margin 10%
   ) || exit 0
 

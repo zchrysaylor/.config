@@ -18,7 +18,12 @@ auto_switch = false
 
 [theme.custom]
 # Highlight and selection accent.
-accent = "#c6a0f6"
+accent = "#9F86C0"
+#c6a0f6
+#A98BC1
+#9E86B5
+#AA82C0
+#9575B0
 
 # -----------------------------------------------------------------------------
 # Terminal
@@ -121,6 +126,12 @@ command = '~/.config/scripts/herdr-sessionator.sh "$HOME" "home"'
 key = "prefix+*"
 type = "shell"
 command = "~/.config/scripts/herdr-litellm.sh"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "shell"
+command = "~/.config/scripts/herdr-vg-agentic-ops.sh"
+description = "toggle vg-mcp and ai-orchestrator"
 
 [[keys.command]]
 key = "prefix+shift+h"
