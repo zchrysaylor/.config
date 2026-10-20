@@ -1,0 +1,19 @@
+herdr/config.toml
+  s_19701c3cf44d7f::t_4ac2b381c28901 198
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "fc27a46a4d915e333d38bdaecc582e8f13d4a8e3",
+  "prompts": {},
+  "sessions": {
+    "s_19701c3cf44d7f": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a15100-932d-7613-ba3b-e186c61e53de",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "zsaylor <zchrysaylor@gmail.com>"
+    }
+  }
+}
