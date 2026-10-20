@@ -1,7 +1,9 @@
 .DS_Store
 herdr/herdr-client.log
 herdr/herdr-server.log
+herdr/plugins/github/annotate-9c299759567c
 herdr/release-notes.json
+herdr/session-snapshots
 herdr/session.json
 hunk/state.json
 node_modules/
@@ -11,6 +13,7 @@ opencode/plugins/git-ai.ts
 opencode/tui.json
 opencode/tui.jsonc
 pi/agent/auth.json
+pi/agent/extensions/git-ai.ts
 pi/agent/models-store.json
 pi/agent/run-history.jsonl
 pi/agent/sessions
