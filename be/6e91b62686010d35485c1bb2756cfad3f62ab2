@@ -1,0 +1,21 @@
+pi/agent/skills/fetchamajig/scripts/catalog.sh
+  s_ce5d4a9e2bbc9b::t_3518ff0af62d5a 1-44
+pi/agent/skills/fetchamajig/SKILL.md
+  s_ce5d4a9e2bbc9b::t_df22462d1575f3 18-86,95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "be6e91b62686010d35485c1bb2756cfad3f62ab2",
+  "prompts": {},
+  "sessions": {
+    "s_ce5d4a9e2bbc9b": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a162cc-e89c-743d-9648-5124305e253b",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "zsaylor <zchrysaylor@gmail.com>"
+    }
+  }
+}
