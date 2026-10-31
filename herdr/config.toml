@@ -153,6 +153,12 @@ command = "annotate.copy-archive"
 description = "copy annotations as context and archive them"
 
 [[keys.command]]
+key = "prefix+ctrl+f"
+type = "shell"
+command = "~/.config/scripts/herdr-fraude-tab.sh"
+description = "open Claude in a fraude tab"
+
+[[keys.command]]
 key = "prefix+ctrl+v"
 type = "plugin_action"
 command = "annotate.paste-archive"
@@ -176,6 +182,12 @@ key = "prefix+ctrl+o"
 type = "plugin_action"
 command = "annotate.open"
 description = "review documents in this folder"
+
+[[keys.command]]
+key = "prefix+ctrl+g"
+type = "shell"
+command = "~/.config/scripts/herdr-open-origin.sh"
+description = "open origin repository in browser"
 
 [[keys.command]]
 key = "prefix+ctrl+l"

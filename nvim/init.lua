@@ -161,6 +161,12 @@ rtp:prepend(lazypath)
 
 -- NOTE: [[ PLUGINS ]]
 -- TODO: move plugins to own file
+-- Let Neovim show its normal intro first. Defer NNP until after the first key's
+-- mapping has completed, so startup mappings work before NNP creates side windows.
+local deferred_nnp_startup = vim.fn.argc() == 0
+local startup_buf = deferred_nnp_startup and vim.api.nvim_get_current_buf() or nil
+local startup_win = deferred_nnp_startup and vim.api.nvim_get_current_win() or nil
+
 require('lazy').setup({
   { 'catgoose/nvim-colorizer.lua', event = 'BufReadPre', opts = {} },
   { 'NMAC427/guess-indent.nvim', opts = {} },
@@ -245,7 +251,7 @@ require('lazy').setup({
         },
       },
       autocmds = {
-        enableOnVimEnter = true, -- Auto-enable on startup
+        enableOnVimEnter = false, -- Enable after startup intro / first-key handling
       },
     },
   },
@@ -898,6 +904,95 @@ require('lazy').setup({
     },
   },
 })
+
+-- Start NNP after the startup key's mapping has had time to complete. The
+-- delay exceeds 'timeoutlen', so a prefix such as <leader>s can finish first.
+if deferred_nnp_startup then
+  local nnp_startup_ns = vim.api.nvim_create_namespace('deferred-no-neck-pain-startup')
+  local nnp_startup_timer = (vim.uv or vim.loop).new_timer()
+  local nnp_startup_pending = true
+  local nnp_startup_key_seen = false
+
+  local function stop_nnp_startup()
+    vim.on_key(nil, nnp_startup_ns)
+    if not nnp_startup_timer:is_closing() then
+      nnp_startup_timer:stop()
+      nnp_startup_timer:close()
+    end
+  end
+
+  local function maybe_enable_nnp()
+    if not nnp_startup_pending then
+      return
+    end
+
+    local current_buf = vim.api.nvim_get_current_buf()
+    local current_win = vim.api.nvim_get_current_win()
+    local buffer_name = vim.api.nvim_buf_get_name(current_buf)
+    local buftype = vim.api.nvim_get_option_value('buftype', { buf = current_buf })
+    local is_regular_file = buffer_name ~= '' and buftype == ''
+    local is_untouched_startup_buffer = current_buf == startup_buf
+      and buffer_name == ''
+      and buftype == ''
+      and not vim.api.nvim_get_option_value('modified', { buf = current_buf })
+      and vim.api.nvim_buf_line_count(current_buf) == 1
+      and vim.api.nvim_buf_get_lines(current_buf, 0, 1, false)[1] == ''
+
+    -- Typing into the original unnamed buffer means the user chose to start
+    -- editing instead of opening a file from the intro.
+    if current_buf == startup_buf and not is_untouched_startup_buffer and not is_regular_file then
+      nnp_startup_pending = false
+      return stop_nnp_startup()
+    end
+
+    -- Wait while a picker, float, command line, or insert mode is active. A
+    -- later key will check again; selecting a file from Telescope enables NNP
+    -- once the selected regular file becomes the current buffer. Do not enable
+    -- on the initial BufEnter until the intro has actually received a key.
+    if
+      vim.api.nvim_win_get_config(current_win).relative ~= ''
+      or (not is_regular_file and not is_untouched_startup_buffer)
+      or (is_untouched_startup_buffer and not nnp_startup_key_seen)
+      or vim.api.nvim_get_mode().mode ~= 'n'
+    then
+      return
+    end
+
+    nnp_startup_pending = false
+    stop_nnp_startup()
+    require('no-neck-pain').enable('deferred_startup_after_intro')
+  end
+
+  vim.on_key(function()
+    nnp_startup_key_seen = true
+    nnp_startup_timer:stop()
+    nnp_startup_timer:start(400, 0, vim.schedule_wrap(maybe_enable_nnp))
+  end, nnp_startup_ns)
+
+  vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+    callback = function()
+      if nnp_startup_pending then
+        vim.schedule(maybe_enable_nnp)
+      end
+    end,
+    desc = 'Enable NoNeckPain promptly after opening a startup file',
+  })
+
+  vim.api.nvim_create_autocmd('VimLeavePre', {
+    once = true,
+    callback = stop_nnp_startup,
+    desc = 'Clean up deferred NoNeckPain startup timer',
+  })
+else
+  -- There is no startup intro when opening a file, so retain the usual behavior.
+  vim.api.nvim_create_autocmd('VimEnter', {
+    once = true,
+    callback = function()
+      require('no-neck-pain').enable('startup_with_file')
+    end,
+    desc = 'Enable NoNeckPain after startup when opening a file',
+  })
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

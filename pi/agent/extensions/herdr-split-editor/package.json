@@ -1,0 +1,29 @@
+{
+  "name": "pi-herdr-split-editor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Edit Pi prompts in a live Herdr split pane.",
+  "type": "module",
+  "keywords": ["pi-package", "herdr"],
+  "files": ["src"],
+  "engines": { "node": ">=22.19.0" },
+  "scripts": {
+    "setup:host": "node scripts/link-host.mjs",
+    "check": "tsc --noEmit && npm test",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "pi": { "extensions": ["./src/index.ts"] },
+  "dependencies": {
+    "@effect/platform-node": "4.0.5",
+    "effect": "4.0.5"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
