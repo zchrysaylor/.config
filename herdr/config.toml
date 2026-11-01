@@ -50,6 +50,7 @@ split_horizontal = 'prefix+"'
 split_vertical = "prefix+%"
 previous_workspace = "prefix+("
 next_workspace = "prefix+)"
+new_worktree = "prefix+shift+t"
 
 # Custom commands use the normal binding syntax. Types are `shell` for a
 # detached process, `pane` for a temporary pane, `popup` for a modal terminal,
@@ -93,12 +94,12 @@ width = "80%"
 height = "80%"
 
 [[keys.command]]
-key = "prefix+shift+n"
+key = "prefix+shift+g"
 type = "shell"
 command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Documents/geumgo" "geumgo"'
 
 [[keys.command]]
-key = "prefix+shift+w"
+key = "prefix+d"
 type = "shell"
 command = '~/.config/scripts/herdr-sessionator.sh "$HOME/Code/IdeaProjects/deliveryhero" "deliveryhero"'
 

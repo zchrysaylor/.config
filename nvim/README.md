@@ -5,7 +5,7 @@
 A starting point for Neovim that is:
 
 * Small
-* Single-file
+* Modular
 * Completely Documented
 
 **NOT** a Neovim distribution, but instead a starting point for your configuration.
@@ -61,9 +61,9 @@ fork to your machine using one of the commands below, depending on your OS.
 > Your fork's URL will be something like this:
 > `https://github.com/<your_github_username>/kickstart.nvim.git`
 
-You likely want to remove `lazy-lock.json` from your fork's `.gitignore` file
-too - it's ignored in the kickstart repo to make maintenance easier, but it's
-[recommended to track it in version control](https://lazy.folke.io/usage/lockfile).
+This config uses Neovim's built-in `vim.pack` plugin manager. Plugin
+specifications and setup live in `lua/plugins/`; `init.lua` keeps editor
+options and core mappings.
 
 #### Clone kickstart.nvim
 
@@ -103,8 +103,12 @@ Start Neovim
 nvim
 ```
 
-That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
-the current plugin status. Hit `q` to close the window.
+On first startup, `vim.pack` asks to install the plugins listed in
+`lua/plugins/specs.lua`. Confirm the prompt; plugin revisions are recorded in
+`nvim-pack-lock.json` in the config directory. Track this lockfile with your
+config. Use `:lua vim.pack.update()` to review and apply plugin updates, and
+`:checkhealth vim.pack` to inspect manager state. The config targets Neovim
+0.12+ because it uses the built-in `vim.pack` API.
 
 #### Read The Friendly Documentation
 
@@ -138,17 +142,11 @@ examples of adding popularly requested plugins.
     `~/.local/share/nvim-kickstart`. You can apply this approach to any Neovim
     distribution that you would like to try out.
 * What if I want to "uninstall" this configuration:
-  * See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
-* Why is the kickstart `init.lua` a single file? Wouldn't it make sense to split it into multiple files?
-  * The main purpose of kickstart is to serve as a teaching tool and a reference
-    configuration that someone can easily use to `git clone` as a basis for their own.
-    As you progress in learning Neovim and Lua, you might consider splitting `init.lua`
-    into smaller parts. A fork of kickstart that does this while maintaining the
-    same functionality is available here:
-    * [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
-  * Discussions on this topic can be found here:
-    * [Restructure the configuration](https://github.com/nvim-lua/kickstart.nvim/issues/218)
-    * [Reorganize init.lua into a multi-file setup](https://github.com/nvim-lua/kickstart.nvim/pull/473)
+  * Remove the config and its Neovim data directory after backing up anything you want to keep.
+* Where are plugins configured?
+  * `lua/plugins/specs.lua` lists plugins. The other modules in `lua/plugins/`
+    configure them by feature. `init.lua` calls `require('plugins').setup()`
+    after setting core options and keymaps.
 
 ### Install Recipes
 

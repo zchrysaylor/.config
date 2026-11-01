@@ -59,10 +59,12 @@ const make = Effect.gen(function* () {
       Effect.mapError(() => new EditFailure({ message: "Cannot create split-editor temporary directory" })),
     );
     const file = join(directory, "prompt.md");
+    let prepared = false;
     const run = Effect.gen(function* () {
       // mkdtemp is private (0700); keep the file private even with a permissive umask.
       yield* fs.writeFileString(file, request.text, { mode: 0o600 });
       request.onPrepared(file);
+      prepared = true;
       const completion = yield* pane.edit({ cwd: request.cwd, file, status: join(directory, "status"), config: request.config });
       const text = (yield* fs.readFileString(file)).replace(/\r?\n$/, "");
       const warnings: string[] = [];
@@ -74,10 +76,20 @@ const make = Effect.gen(function* () {
       );
       return { text, recoveryFile: file, warnings, discardRecovery };
     });
-    return yield* run.pipe(Effect.mapError((error) => new EditFailure({
-      message: error._tag === "PaneFailure" ? error.message : "Cannot write/read split-editor prompt file",
-      recoveryFile: file,
-    })));
+    return yield* run.pipe(
+      Effect.onExit(() => prepared ? Effect.void : fs.remove(directory, { recursive: true, force: true }).pipe(
+        Effect.mapError(() => new EditFailure({
+          message: "Could not remove incomplete split-editor temporary files",
+          recoveryFile: file,
+        })),
+      )),
+      Effect.mapError((error) => new EditFailure({
+        message: error._tag === "PaneFailure" || error._tag === "EditFailure"
+          ? error.message
+          : "Cannot write/read split-editor prompt file",
+        recoveryFile: file,
+      })),
+    );
   });
   return Service.of({ edit });
 });

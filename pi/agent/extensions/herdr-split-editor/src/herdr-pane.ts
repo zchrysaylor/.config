@@ -118,7 +118,8 @@ const make = (originalShell: string | undefined) => Effect.gen(function* () {
         while (true) {
           if (yield* fs.exists(started)) return true;
           if (!(yield* exists)) return false;
-          yield* Effect.sleep("100 millis");
+          // Avoid repeatedly spawning Herdr while its login shell is still starting.
+          yield* Effect.sleep("500 millis");
         }
       }).pipe(
         Effect.timeoutOption("10 seconds"),
@@ -133,7 +134,9 @@ const make = (originalShell: string | undefined) => Effect.gen(function* () {
           // Re-read after detecting closure: the wrapper may have written status during the CLI call.
           return (yield* readStatus) ?? { _tag: "Closed" } as const;
         }
-        yield* Effect.sleep("250 millis");
+        // Pane closure is user-driven; one status process per second is responsive without
+        // continuously spawning Herdr for the duration of a long edit.
+        yield* Effect.sleep("1 second");
       }
     }));
     if (closeFailure !== undefined) return yield* closeFailure;

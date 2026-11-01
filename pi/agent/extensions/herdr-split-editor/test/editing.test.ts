@@ -86,6 +86,20 @@ test("unsupported shell launch mode retains the prompt and never types a fallbac
   } finally { await h.close(); }
 });
 
+test("temporary files are removed when preparation fails before recovery ownership is handed off", async () => {
+  const h = await setup();
+  try {
+    const result = await h.runtime.runPromiseExit(Effect.flatMap(SplitEditing.Service, (service) => service.edit({
+      cwd: h.root,
+      text: "draft",
+      config: h.config,
+      onPrepared: () => { throw new Error("observer failed"); },
+    })));
+    assert.ok(Exit.isFailure(result));
+    assert.equal((await readdir(h.root)).some((name) => name.startsWith("pi-herdr-split-editor-")), false);
+  } finally { await h.close(); }
+});
+
 test("a pane that closes before startup fails without claiming to have edited the prompt", async () => {
   const h = await setup();
   try {

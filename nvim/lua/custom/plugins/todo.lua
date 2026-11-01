@@ -82,22 +82,11 @@ function M.mark_done()
   vim.notify('Moved to Done: ' .. block[1])
 end
 
--- function M.setup(opts)
---   opts = opts or {}
---   local key = opts.keybind or '<leader>td'
---   vim.keymap.set('n', key, M.mark_done, {
---     desc = 'Mark todo item as done and move to Done section',
---     silent = true,
---   })
--- end
+function M.setup()
+  vim.keymap.set('n', '<leader>todo', M.mark_done, {
+    desc = 'Mark todo item as done and move to Done section',
+    silent = true,
+  })
+end
 
-return {
-  name = 'todo_done',
-  dir = vim.fn.stdpath 'config', -- points to ~/.config/nvim
-  config = function()
-    vim.keymap.set('n', '<leader>todo', M.mark_done, {
-      desc = 'Mark todo item as done and move to Done section',
-      silent = true,
-    })
-  end,
-}
+return M
