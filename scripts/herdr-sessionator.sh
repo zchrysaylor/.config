@@ -52,6 +52,16 @@ pi_pane_id=$(jq -r '.result.root_pane.pane_id' <<<"$created")
 "$herdr_bin" tab rename "$pi_tab_id" pi >/dev/null
 "$herdr_bin" pane run "$pi_pane_id" pi >/dev/null
 
+fraude_tab=$(
+  "$herdr_bin" tab create \
+    --workspace "$new_workspace_id" \
+    --cwd "$cwd" \
+    --label fraude \
+    --focus
+)
+fraude_pane_id=$(jq -r '.result.root_pane.pane_id' <<<"$fraude_tab")
+"$herdr_bin" pane run "$fraude_pane_id" claude >/dev/null
+
 "$herdr_bin" tab create \
   --workspace "$new_workspace_id" \
   --cwd "$cwd" \

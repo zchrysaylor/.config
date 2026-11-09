@@ -1,7 +1,8 @@
+codeburn/
 .DS_Store
 herdr/herdr-client.log
 herdr/herdr-server.log
-herdr/plugins/github/annotate-9c299759567c
+herdr/plugins/
 herdr/release-notes.json
 herdr/session-snapshots
 herdr/session.json
@@ -22,3 +23,18 @@ pi/agent/settings.json
 pi/agent/trust.json
 scripts/git-ai-outbox-check.sh
 scripts/herdr-litellm.sh
+
+# Machine-local installations, runtime state, and credentials
+/configstore/
+/gcloud/
+/gh/hosts.yml
+/herdr/.plugins.lock
+/herdr/herdr.sock*
+/opencode/service.json
+/pi/agent/install/
+/pi/agent/bin/pi
+
+# Independently managed environment, model, and dependency configuration
+/envman/
+/pi/agent/models.json
+/opencode/package-lock.json
