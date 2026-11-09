@@ -17,18 +17,35 @@ end
 rex.bind("ctrl+b>shift+9", "session.previous")
 rex.bind("ctrl+b>shift+0", "session.next")
 
+local project_sessions
+local session_roots = {}
+
 rex.action{
   name = "open_project_session",
   title = "Open Project Session",
   category = "Session",
-  args = { cwd = "string", label = "string" },
+  args = { cwd = "string", label = "string?", focus = "boolean?" },
   run = function(_, args)
+    local label = args.label
+    if label == nil then
+      for _, project in ipairs(project_sessions) do
+        if project.cwd == args.cwd then
+          label = project.label
+          break
+        end
+      end
+      label = label or (args.cwd:match("([^/]+)/?$") or "root"):gsub("%.", "_")
+    end
+
     local listed, err = rex.call("session.list")
     if listed == nil then error(err, 0) end
 
     for _, session in ipairs(listed.sessions or {}) do
-      if session.label == args.label then
-        rex.client.queue("session.select", { session_id = session.session_id })
+      if session.label == label then
+        session_roots[session.session_id] = args.cwd
+        if args.focus ~= false then
+          rex.client.queue("session.select", { session_id = session.session_id })
+        end
         return { session_id = session.session_id, created = false }
       end
     end
@@ -39,10 +56,9 @@ rex.action{
     if not directory.ok then error("Directory does not exist: " .. args.cwd, 0) end
 
     local created, create_err = rex.call("session.create", {
-      label = args.label,
+      label = label,
       initial_windows = {
         {
-          window_label = "pi",
           layout = {
             block = {
               flavor = "com.superlogical.terminal.shell",
@@ -51,7 +67,6 @@ rex.action{
           },
         },
         {
-          window_label = "zsh",
           layout = {
             block = {
               flavor = "com.superlogical.terminal.shell",
@@ -62,17 +77,18 @@ rex.action{
       },
     })
     if created == nil then error(create_err, 0) end
+    session_roots[created.session_id] = args.cwd
 
-    rex.client.queue("session.select", {
-      session_id = created.session_id,
-      window_id = created.initial_windows[2].window_id,
-    })
-    return { session_id = created.session_id, created = true }
+    local window_id = created.initial_windows[2].window_id
+    if args.focus ~= false then
+      rex.client.queue("session.select", { session_id = created.session_id, window_id = window_id })
+    end
+    return { session_id = created.session_id, window_id = window_id, created = true }
   end,
 }
 
 local home = assert(os.getenv("HOME"), "HOME must be set")
-local project_sessions = {
+project_sessions = {
   { key = "shift+c", cwd = home .. "/.config", label = ".config" },
   { key = "shift+g", cwd = home .. "/Documents/geumgo", label = "geumgo" },
   { key = "d", cwd = home .. "/Code/IdeaProjects/deliveryhero", label = "deliveryhero" },
@@ -105,7 +121,7 @@ rex.action{
     local view, view_err = rex.session.view{ session_id = ctx.session_id }
     if view == nil then error(view_err, 0) end
 
-    local root
+    local root = session_roots[ctx.session_id]
     for _, project in ipairs(project_sessions) do
       if project.label == view.label then
         root = project.cwd
@@ -124,7 +140,6 @@ rex.action{
 
     local window, window_err = rex.session.new_window{
       session_id = ctx.session_id,
-      window_label = "zsh",
       focus = true,
       layout = {
         block = {
@@ -142,3 +157,7 @@ rex.action{
     return { window_id = window.window_id }
   end,
 }
+
+local config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
+local sessionizer_path = config .. "/rex/sessionizer.lua"
+dofile(sessionizer_path).setup(sessionizer_path)

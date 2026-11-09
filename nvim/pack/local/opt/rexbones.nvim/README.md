@@ -22,7 +22,23 @@ set background=light
 colorscheme merinobones
 ```
 
-The standalone `petrolbones.nvim` package has been replaced by this bundle. Neovim's startup configuration loads `rexbones.nvim` and selects `petrolbones` by default.
+The standalone `petrolbones.nvim` package has been replaced by this bundle. This Neovim configuration loads `petrolbones` as a fallback and enables Rex tracking.
+
+## Follow Rex (optional)
+
+Tracking is off by default. The colorschemes work without Rex or a `setup()` call. To follow the local Rex app on macOS, select a fallback first, then enable tracking:
+
+```lua
+vim.cmd.packadd 'rexbones.nvim'
+vim.cmd.colorscheme 'petrolbones'
+require('rexbones').setup { auto_sync = true }
+```
+
+The plugin reads Rex's appearance and theme ID asynchronously at setup, startup, UI attachment, and `FocusGained`. There is no polling or terminal palette matching. Overlapping refreshes share the in-flight query, and unchanged themes do not reload highlights. Merino and Silver Point select the matching light/dark variant automatically. Auto appearance follows macOS.
+
+Missing preferences, unknown theme IDs, and unsupported platforms leave the current colorscheme unchanged. Reads have a one-second timeout each. This uses Rex's internal `com.superlogical.rex` preference keys (`Workspace.appearance`, `Workspace.darkThemeID`, and `Workspace.lightThemeID`), which may change in future Rex versions. It reads this Mac's settings, not a remote client's.
+
+Manually loading any colorscheme stops tracking and cancels pending reads. Enable it again with `setup { auto_sync = true }`, or disable it explicitly with `setup { auto_sync = false }`.
 
 ## Colorschemes
 
@@ -99,6 +115,7 @@ Configuration is per colorscheme. Set options before applying it. Dark-only and 
 - `lua/rexbones/init.lua`: shared Zenbones generator and border/link overrides.
 - `lua/rexbones/palettes/`: eight-color palettes; the Petrol Lagoon palette was copied verbatim from the original standalone package.
 - `lua/rexbones/themes.lua`: mapping from colorscheme names to Rex source IDs.
+- `lua/rexbones/sync.lua`: opt-in, event-driven tracking of local Rex preferences.
 
 The colors were extracted from:
 
@@ -112,6 +129,12 @@ Run in a separate headless Neovim process, with Zenbones and Lush installed in t
 
 ```sh
 nvim --headless -u NONE -i NONE --noplugin -l ~/.config/nvim/pack/local/opt/rexbones.nvim/tests/smoke.lua
+```
+
+Test tracking with mocked preference reads (does not change Rex settings):
+
+```sh
+nvim --headless -u NONE -i NONE --noplugin -l ~/.config/nvim/pack/local/opt/rexbones.nvim/tests/sync.lua
 ```
 
 To also compare every palette against the Rex source:

@@ -3,6 +3,14 @@ local generator = require 'zenbones.specs'
 
 local M = {}
 
+function M.setup(opts)
+  opts = opts or {}
+  assert(opts.auto_sync == nil or type(opts.auto_sync) == 'boolean', 'auto_sync must be a boolean')
+  if opts.auto_sync or package.loaded['rexbones.sync'] then
+    require('rexbones.sync').setup(opts.auto_sync == true)
+  end
+end
+
 function M.apply(name)
   local palettes = require('rexbones.palettes.' .. name)
   local background = vim.o.background
