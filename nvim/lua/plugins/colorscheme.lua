@@ -1,9 +1,9 @@
 local M = {}
 
 function M.setup()
-  vim.cmd.packadd 'rex-theme.nvim'
-  require('rex-theme').setup()
-  vim.cmd.colorscheme 'rex'
+  vim.o.termguicolors = true
+  vim.cmd.packadd 'rexbones.nvim'
+  vim.cmd.colorscheme 'petrolbones'
 end
 
 return M

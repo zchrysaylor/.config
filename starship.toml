@@ -1,12 +1,19 @@
+format = "[$all](italic)"
+
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = "[>](bold italic green)"
+error_symbol = "[x](bold italic red)"
+vimcmd_symbol = "[<](bold italic green)"
+vimcmd_visual_symbol = "[❮](bold italic yellow)"
+vimcmd_replace_symbol = "[❮](bold italic purple)"
+vimcmd_replace_one_symbol = "[❮](bold italic purple)"
 
 [git_commit]
+style = "green bold italic"
 tag_symbol = " tag "
 
 [git_status]
+style = "red bold italic"
 ahead = ">"
 behind = "<"
 diverged = "<>"
@@ -14,199 +21,281 @@ renamed = "r"
 deleted = "x"
 
 [aws]
+style = "bold yellow italic"
 symbol = "aws "
 disabled = true
 
 [azure]
+style = "blue bold italic"
 symbol = "az "
 
 [buf]
+style = "bold blue italic"
 symbol = "buf "
 
 [bun]
+style = "bold red italic"
 symbol = "bun "
 
 [c]
+style = "149 bold italic"
 symbol = "C "
 
 # [cpp]
 # symbol = "C++ "
 
 [cobol]
+style = "bold blue italic"
 symbol = "cobol "
 
 [conda]
+style = "green bold italic"
 symbol = "conda "
 
 [container]
+style = "red bold dimmed italic"
 symbol = "container "
 
 [crystal]
+style = "bold red italic"
 symbol = "cr "
 
 [cmake]
+style = "bold blue italic"
 symbol = "cmake "
 
 [daml]
+style = "bold cyan italic"
 symbol = "daml "
 
 [dart]
+style = "bold blue italic"
 symbol = "dart "
 
 [deno]
+style = "green bold italic"
 symbol = "deno "
 
 [dotnet]
+style = "blue bold italic"
 symbol = ".NET "
 
 [directory]
+style = "cyan bold italic"
+read_only_style = "red italic"
 read_only = " ro"
 
 [docker_context]
+style = "blue bold italic"
 symbol = "docker "
 
 [elixir]
+style = "bold purple italic"
 symbol = "exs "
 
 [elm]
+style = "cyan bold italic"
 symbol = "elm "
 
 [fennel]
+style = "bold green italic"
 symbol = "fnl "
 
 [fossil_branch]
+style = "bold purple italic"
 symbol = "fossil "
 
 [gcloud]
+style = "bold blue italic"
 symbol = "gcp "
 disabled = true
 
 [git_branch]
+style = "bold purple italic"
 symbol = "git "
 
 [gleam]
+style = "bold italic #FFAFF3"
 symbol = "gleam "
 
 [golang]
+style = "bold cyan italic"
 symbol = "go "
 
 [gradle]
+style = "bold bright-cyan italic"
 symbol = "gradle "
 
 [guix_shell]
+style = "yellow bold italic"
 symbol = "guix "
 
 [haskell]
+style = "bold purple italic"
 symbol = "haskell "
 
 [helm]
+style = "bold white italic"
 symbol = "helm "
 
 [hg_branch]
+style = "bold purple italic"
 symbol = "hg "
 
 [java]
+style = "red dimmed italic"
 symbol = "java "
 
 [julia]
+style = "bold purple italic"
 symbol = "jl "
 
 [kotlin]
+style = "bold blue italic"
 symbol = "kt "
 
 [lua]
+style = "bold blue italic"
 symbol = "lua "
 
 [nodejs]
+style = "bold green italic"
 symbol = "nodejs "
 
 [memory_usage]
+style = "white bold dimmed italic"
 symbol = "memory "
 
 [meson]
+style = "blue bold italic"
 symbol = "meson "
 
 [nats]
+style = "bold purple italic"
 symbol = "nats "
 
 [nim]
+style = "yellow bold italic"
 symbol = "nim "
 
 [nix_shell]
+style = "bold blue italic"
 symbol = "nix "
 
 [ocaml]
+style = "bold yellow italic"
 symbol = "ml "
 
 [opa]
+style = "bold blue italic"
 symbol = "opa "
 
 [os.symbols]
 Macos = "mac "
 
 [package]
+style = "208 bold italic"
 symbol = "pkg "
 disabled = true
 
 [perl]
+style = "149 bold italic"
 symbol = "pl "
 
 [php]
+style = "147 bold italic"
 symbol = "php "
 
 [pijul_channel]
+style = "bold purple italic"
 symbol = "pijul "
 
 # [pixi]
 # symbol = "pixi "
 
 [pulumi]
+style = "bold 5 italic"
 symbol = "pulumi "
 
 [purescript]
+style = "bold white italic"
 symbol = "purs "
 
 [python]
+style = "yellow bold italic"
 symbol = "py "
 
 [quarto]
+style = "bold italic #75AADB"
 symbol = "quarto "
 
 [raku]
+style = "149 bold italic"
 symbol = "raku "
 
 [rlang]
+style = "blue bold italic"
 symbol = "r "
 
 [ruby]
+style = "bold red italic"
 symbol = "rb "
 
 [rust]
+style = "bold red italic"
 symbol = "rs "
 
 [scala]
+style = "red bold italic"
 symbol = "scala "
 
 [spack]
+style = "blue bold italic"
 symbol = "spack "
 
 [solidity]
+style = "bold blue italic"
 symbol = "solidity "
 
 [status]
-symbol = "[x](bold red) "
+style = "bold red italic"
+symbol = "[x](bold italic red) "
 
 [sudo]
+style = "bold blue italic"
 symbol = "sudo "
 
 [swift]
+style = "bold 202 italic"
 symbol = "swift "
 
 [typst]
+style = "bold italic #0093A7"
 symbol = "typst "
 
 [terraform]
+style = "bold 105 italic"
 symbol = "terraform "
 
 [zig]
+style = "bold yellow italic"
 symbol = "zig "
+
+[git_state]
+style = "bold yellow italic"
+
+[cmd_duration]
+style = "yellow bold italic"
+
+[jobs]
+style = "bold blue italic"
+
+[hostname]
+style = "green dimmed bold italic"
+
+[username]
+style_user = "yellow bold italic"
+style_root = "red bold italic"
+
+[os]
+style = "bold white italic"

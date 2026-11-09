@@ -38,3 +38,8 @@ scripts/herdr-litellm.sh
 /envman/
 /pi/agent/models.json
 /opencode/package-lock.json
+
+1Password/
+cagent/
+homebrew/
+uv/
