@@ -1,6 +1,8 @@
 local specs = {
   -- Colorscheme first: its highlights should be in place before other UI setup.
-  'https://github.com/nkxxll/ghostty-default-style-dark.nvim',
+  'https://github.com/folke/tokyonight.nvim', -- Required by Rex's renderer.
+  'https://github.com/rktjmp/lush.nvim',
+  'https://github.com/zenbones-theme/zenbones.nvim',
 
   -- Libraries and runtime dependencies.
   'https://github.com/nvim-lua/plenary.nvim',

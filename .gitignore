@@ -14,6 +14,7 @@ opencode/tui.json
 opencode/tui.jsonc
 pi/agent/auth.json
 pi/agent/extensions/git-ai.ts
+pi/agent/mcp-auth.json
 pi/agent/models-store.json
 pi/agent/run-history.jsonl
 pi/agent/sessions

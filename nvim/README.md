@@ -157,17 +157,21 @@ After installing all the dependencies continue with the [Install Kickstart](#Ins
 #### Windows Installation
 
 <details><summary>Windows with Microsoft C++ Build Tools and CMake</summary>
-Installation may require installing build tools and updating the run command for `telescope-fzf-native`
+Install CMake and the Microsoft C++ Build Tools on Windows.
 
-See `telescope-fzf-native` documentation for [more details](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
-
-This requires:
-
-- Install CMake and the Microsoft C++ Build Tools on Windows
+To build `telescope-fzf-native.nvim` with CMake, change its executable checks
+from `make` to `cmake` in `lua/plugins/specs.lua`, `lua/plugins/hooks.lua`,
+and `lua/plugins/telescope.lua`. In its `PackChanged` branch in
+`lua/plugins/hooks.lua`, replace `run_build(event.data.path, { 'make' })` with:
 
 ```lua
-{'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+run_build(event.data.path, { 'cmake', '-S', '.', '-B', 'build', '-DCMAKE_BUILD_TYPE=Release' })
+run_build(event.data.path, { 'cmake', '--build', 'build', '--config', 'Release' })
+run_build(event.data.path, { 'cmake', '--install', 'build', '--prefix', 'build' })
 ```
+
+See the [telescope-fzf-native installation instructions](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
+for details.
 </details>
 <details><summary>Windows with gcc/make using chocolatey</summary>
 Alternatively, one can install gcc and make which don't require changing the config,

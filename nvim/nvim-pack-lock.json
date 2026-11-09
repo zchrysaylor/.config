@@ -18,10 +18,6 @@
       "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
-    "ghostty-default-style-dark.nvim": {
-      "rev": "b09d4d51f614cd1c14444d8586e0ba3ba3119787",
-      "src": "https://github.com/nkxxll/ghostty-default-style-dark.nvim"
-    },
     "gitsigns.nvim": {
       "rev": "1e9d0fbfe7ff848bc402d2c2e2854fb4eff2dce7",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
@@ -42,6 +38,10 @@
       "rev": "25715394680590f56aab90390d430cab0dc46808",
       "src": "https://github.com/S1M0N38/love2d.nvim",
       "version": "2.0.0 - 3.0.0"
+    },
+    "lush.nvim": {
+      "rev": "9c60ec2279d62487d942ce095e49006af28eed6e",
+      "src": "https://github.com/rktjmp/lush.nvim"
     },
     "mason-lspconfig.nvim": {
       "rev": "cd6c64d85c9871aaf759d26f2371029d6d674a48",
@@ -126,9 +126,17 @@
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
+    "tokyonight.nvim": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
+    },
+    "zenbones.nvim": {
+      "rev": "8304d8df9b823ff11e103afa62f38c39f534abe6",
+      "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }
 }

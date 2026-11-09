@@ -1,0 +1,1 @@
+require('rex-theme').activate()
