@@ -1,0 +1,18 @@
+.gitignore
+  h_a131c75df58197 1,5,26-40
+opencode/cli.json
+  h_a131c75df58197 2-14
+scripts/herdr-sessionator.sh
+  h_a131c75df58197 55-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "abbf447e58dfc48682e11308f4cc1a3c240f6ac9",
+  "prompts": {},
+  "humans": {
+    "h_a131c75df58197": {
+      "author": "zsaylor <zchrysaylor@gmail.com>"
+    }
+  }
+}
