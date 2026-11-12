@@ -39,6 +39,10 @@ key-mapping.preset = 'qwerty'
     run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+    if.app-id = 'com.superlogical.rex'
+    run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
     if.app-name-regex-substring = 'spotify'
     run = ['move-node-to-workspace 3']
 
