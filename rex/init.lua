@@ -1,5 +1,3 @@
-rex.bind("ctrl+b>c", "hatch")
-rex.bind("cmd+t", "hatch")
 rex.bind("ctrl+b>shift+5", "pane.split.right")
 rex.bind("ctrl+b>shift+[Quote]", "pane.split.down")
 rex.bind("ctrl+b>h", "pane.focus.left")
@@ -41,7 +39,26 @@ end
 
 local config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
 local tyrannosession_path = config .. "/rex/tyrannosession-rex.lua"
-dofile(tyrannosession_path).setup(tyrannosession_path, project_sessions)
+dofile(tyrannosession_path).setup({
+  script_path = tyrannosession_path,
+  roots = {
+    home .. "/Code",
+    home .. "/Code/IdeaProjects/deliveryhero",
+    home .. "/forge",
+    home .. "/Documents/geumgo",
+  },
+  programs = { { "pi" }, { "zsh" } },
+  shell = "/bin/zsh",
+  projects = project_sessions,
+  executables = {
+    fd = "/opt/homebrew/bin/fd",
+    fzf = "/opt/homebrew/bin/fzf",
+  },
+  bindings = {
+    picker = "ctrl+b>f",
+    new_tab = { "ctrl+b>c", "cmd+t" },
+  },
+})
 
 local annotator_path = config .. "/rex/tyrannotator-rex.lua"
 dofile(annotator_path).setup(annotator_path)

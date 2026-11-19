@@ -30,6 +30,7 @@ pi/agent/bin/pi
 pi/agent/crashes.json
 pi/agent/extensions/git-ai.ts
 pi/agent/install/
+pi/agent/langfuse.json
 pi/agent/mcp-auth.json
 pi/agent/models-store.json
 pi/agent/models.json
