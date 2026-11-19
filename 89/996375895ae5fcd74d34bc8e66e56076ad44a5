@@ -1,0 +1,24 @@
+.gitignore
+  h_a131c75df58197 2-10,13,18,23,25,29-30,32,35
+nvim/lua/plugins/lsp.lua
+  h_a131c75df58197 106-129,186-194
+nvim/lua/plugins/no-neck-pain.lua
+  h_a131c75df58197 18
+opencode/cli.json
+  h_a131c75df58197 14-17
+pi/agent/skills/slop-solvent/SKILL.md
+  h_a131c75df58197 3
+rex/init.lua
+  h_a131c75df58197 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "89996375895ae5fcd74d34bc8e66e56076ad44a5",
+  "prompts": {},
+  "humans": {
+    "h_a131c75df58197": {
+      "author": "zsaylor <zchrysaylor@gmail.com>"
+    }
+  }
+}
