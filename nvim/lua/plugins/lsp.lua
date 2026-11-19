@@ -103,6 +103,30 @@ function M.setup()
     },
   }
 
+  -- Prefer a project's Effect-patched native server without changing other TypeScript projects.
+  local typescript_root = vim.lsp.config.ts_ls.root_dir
+  local function effect_tsgo(root)
+    local bin = vim.fs.joinpath(root, 'node_modules', '.bin', 'effect-tsgo')
+    return vim.fn.executable(bin) == 1 and bin or nil
+  end
+
+  vim.lsp.config(
+    'effect_tsc',
+    vim.tbl_deep_extend('force', vim.lsp.config.tsc, {
+      cmd = function(dispatchers, config)
+        return vim.lsp.rpc.start({ effect_tsgo(config.root_dir), 'tsc', '--lsp', '--stdio' }, dispatchers)
+      end,
+      root_dir = function(bufnr, on_dir)
+        typescript_root(bufnr, function(root)
+          if effect_tsgo(root) then
+            on_dir(root)
+          end
+        end)
+      end,
+    })
+  )
+  vim.lsp.enable 'effect_tsc'
+
   -- Enable the following language servers
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
@@ -159,7 +183,15 @@ function M.setup()
     -- Official JetBrains Kotlin language server (currently alpha)
     kotlin_lsp = {},
 
-    ts_ls = {},
+    ts_ls = {
+      root_dir = function(bufnr, on_dir)
+        typescript_root(bufnr, function(root)
+          if not effect_tsgo(root) then
+            on_dir(root)
+          end
+        end)
+      end,
+    },
   }
 
   -- Ensure the servers and tools above are installed.

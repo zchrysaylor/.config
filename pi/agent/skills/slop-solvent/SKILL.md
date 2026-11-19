@@ -1,6 +1,6 @@
 ---
 name: slop-solvent
-description: Removes AI-slop vocabulary, stock rhetoric, filler, and formatting from prose while preserving meaning and the writer's voice. Use when drafting or editing prose, documentation, blog posts, reports, emails, comments, or written content generation, especially when asked to unslop text, remove AI tells, or make writing less generic.
+description: Removes AI-slop vocabulary, stock rhetoric, filler, and formatting from prose while preserving meaning and the writer's voice. Use when drafting or editing deliverable written content (e.g. documentation, blog posts, reports, emails, comments) especially when asked to unslop text, remove AI tells, or make writing less generic.
 ---
 
 # Slop solvent

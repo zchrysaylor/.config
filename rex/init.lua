@@ -8,6 +8,7 @@ rex.bind("ctrl+b>k", "pane.focus.up")
 rex.bind("ctrl+b>l", "pane.focus.right")
 rex.bind("ctrl+b>x", "client.close")
 rex.bind("ctrl+b>shift+x", "client.tab.close")
+rex.bind("ctrl+b>shift+d", "session.close")
 
 for index = 1, 9 do
   rex.bind("ctrl+b>" .. index, "client.tab.goto", { index = index })

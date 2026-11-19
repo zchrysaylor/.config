@@ -15,7 +15,7 @@ function M.setup()
   end
 
   require('no-neck-pain').setup {
-    width = 128,
+    width = 160,
     minSideBufferWidth = 10,
     mappings = {
       enabled = true,
