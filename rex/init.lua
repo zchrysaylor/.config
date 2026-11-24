@@ -18,29 +18,20 @@ rex.bind("ctrl+b>shift+0", "session.next")
 
 local home = assert(os.getenv("HOME"), "HOME must be set")
 local project_sessions = {
-  { key = "shift+c", cwd = home .. "/.config", label = ".config" },
-  { key = "shift+g", cwd = home .. "/Documents/geumgo", label = "geumgo" },
-  { key = "d", cwd = home .. "/Code/IdeaProjects/deliveryhero", label = "deliveryhero" },
-  {
-    key = "shift+o",
-    cwd = home .. "/Code/IdeaProjects/deliveryhero/log-vendor-order-management-application",
-    label = "otv2",
-  },
-  { key = "shift+v", cwd = home .. "/Code/verin", label = "verin" },
-  { key = "shift+[Backquote]", cwd = home, label = "home" },
+  { key = "shift+c", cwd = home .. "/.config" },
+  { key = "shift+g", cwd = home .. "/Documents/geumgo" },
+  { key = "d", cwd = home .. "/Code/IdeaProjects/deliveryhero" },
+  { key = "shift+o", cwd = home .. "/Code/IdeaProjects/deliveryhero/log-vendor-order-management-application" },
+  { key = "shift+v", cwd = home .. "/Code/verin" },
+  { key = "shift+[Backquote]", cwd = home },
 }
 
 for _, project in ipairs(project_sessions) do
-  rex.bind("ctrl+b>" .. project.key, "territorialize", {
-    cwd = project.cwd,
-    label = project.label,
-  })
+  rex.bind("ctrl+b>" .. project.key, "tyrannosession", { cwd = project.cwd })
 end
 
 local config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
-local tyrannosession_path = config .. "/rex/tyrannosession-rex.lua"
-dofile(tyrannosession_path).setup({
-  script_path = tyrannosession_path,
+require("tyrannosession-rex").setup({
   roots = {
     home .. "/Code",
     home .. "/Code/IdeaProjects/deliveryhero",
@@ -49,10 +40,8 @@ dofile(tyrannosession_path).setup({
   },
   programs = { { "pi" }, { "zsh" } },
   shell = "/bin/zsh",
-  projects = project_sessions,
   executables = {
     fd = "/opt/homebrew/bin/fd",
-    fzf = "/opt/homebrew/bin/fzf",
   },
   bindings = {
     picker = "ctrl+b>f",
