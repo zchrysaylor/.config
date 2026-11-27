@@ -2,7 +2,7 @@
 
 ---@class Tyrannosession.Options
 ---@field roots? string[] Directories to search for projects. Defaults to `{ "~/Code" }`.
----@field programs? string[][] One command per tab in a new session. Defaults to one interactive shell.
+---@field programs? string[][] One command per tab in a new session; an empty array opens a plain shell. Arguments cannot contain terminal control characters. Defaults to one interactive shell.
 ---@field shell? string The shell for new terminals. Defaults to `$SHELL`, then `/bin/sh`.
 ---@field executables? { fd?: string } Where to find `fd` when Rex's PATH lacks it, e.g. `/opt/homebrew/bin/fd`.
 ---@field bindings? { picker?: string|false, new_tab?: string[] } `picker` defaults to `ctrl+b>f`; `false` disables it.
@@ -128,15 +128,30 @@ local function unique_label(cwd, taken)
    return label
 end
 
----A layout with one terminal at `cwd`, running `command` or an interactive shell.
----`interactive` makes the shell read its startup files (e.g. ~/.zshrc) before running `command`,
----so programs only on the PATH set there are found.
+---Quote an argument for the interactive shell, without allowing terminal control characters.
+---@param argument string
+local function shell_quote(argument)
+   assert(type(argument) == "string", "Program arguments must be strings")
+   assert(not argument:find("[%z\1-\31\127]"), "Program arguments cannot contain terminal control characters")
+   return "'" .. argument:gsub("'", "'\\''") .. "'"
+end
+
+---A layout with one interactive shell at `cwd`, optionally running a command in it.
+---The shell remains available when the command exits.
 ---@param cwd string
 ---@param command? string[]
 local function terminal(cwd, command)
+   local input
+   if command and #command > 0 then
+      local words = {}
+      for _, argument in ipairs(command) do
+         words[#words + 1] = shell_quote(argument)
+      end
+      input = table.concat(words, " ") .. "\n"
+   end
    return rex.layout.block({
       flavor = "com.superlogical.terminal.shell",
-      options = { cwd = cwd, shell = config.shell, command = command, interactive = command ~= nil },
+      options = { cwd = cwd, shell = config.shell, initial_input = input },
    })
 end
 
@@ -209,8 +224,8 @@ local function chomp()
 end
 
 ---Open or reuse a project by its normalized absolute root, never its display label.
----Without `cwd`, ask for one in the command palette.
----@param args { cwd?: string }
+---Without `cwd`, ask for one in the command palette. `label` and `programs` apply to new sessions.
+---@param args { cwd?: string, label?: string, programs?: string[][] }
 ---@return Tyrannosession.Session? session `nil` when the picker was cancelled.
 function Tyrannosession.territorialize(args)
    local picked = args.cwd or chomp()
@@ -238,10 +253,10 @@ function Tyrannosession.territorialize(args)
    end
 
    local windows = {}
-   for _, program in ipairs(config.programs) do
+   for _, program in ipairs(args.programs or config.programs) do
       windows[#windows + 1] = { layout = terminal(cwd, program) }
    end
-   local claimed = assert(rex.call("session.create", { label = unique_label(cwd, taken), initial_windows = windows }))
+   local claimed = assert(rex.call("session.create", { label = args.label or unique_label(cwd, taken), initial_windows = windows }))
    known[claimed.session_id] = { cwd = cwd }
    save_records()
    local session = { session_id = claimed.session_id, window_id = claimed.initial_windows[#windows].window_id, created = true }
@@ -257,7 +272,7 @@ function Tyrannosession.setup(options)
    local executables = options.executables or {}
    config = {
       roots = {},
-      programs = options.programs or { { shell } },
+      programs = options.programs or { {} },
       shell = shell,
       state_path = absolute(options.state_path or ((os.getenv("XDG_STATE_HOME") or (home .. "/.local/state")) .. "/rex/tyrannosession.json")),
       executables = {
@@ -275,7 +290,7 @@ function Tyrannosession.setup(options)
       title = "Tyrannosession",
       description = "Open or switch to a project's session.",
       category = "Session",
-      args = { cwd = "string?" },
+      args = { cwd = "string?", label = "string?", programs = "array?" },
       run = function(_, args)
          return Tyrannosession.territorialize(args)
       end,

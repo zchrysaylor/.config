@@ -30,7 +30,18 @@ for _, project in ipairs(project_sessions) do
   rex.bind("ctrl+b>" .. project.key, "tyrannosession", { cwd = project.cwd })
 end
 
+rex.bind("ctrl+b>shift+8", "tyrannosession", {
+  cwd = home,
+  label = "dh-litellm",
+  programs = {
+    { "zsh", "-c", "dp-devinfra litellm token && exec dp-devinfra litellm proxy" },
+  },
+})
+
 local config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
+require("daegan-rex").setup()
+rex.bind("ctrl+b>a", "daegan")
+
 require("tyrannosession-rex").setup({
   roots = {
     home .. "/Code",
@@ -38,7 +49,7 @@ require("tyrannosession-rex").setup({
     home .. "/forge",
     home .. "/Documents/geumgo",
   },
-  programs = { { "pi" }, { "zsh" } },
+  programs = { { "pi" }, {} },
   shell = "/bin/zsh",
   executables = {
     fd = "/opt/homebrew/bin/fd",

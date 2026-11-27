@@ -41,3 +41,4 @@ pi/agent/trust.json
 scripts/git-ai-outbox-check.sh
 scripts/herdr-litellm.sh
 uv/
+ghui
