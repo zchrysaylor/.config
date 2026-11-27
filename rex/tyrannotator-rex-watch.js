@@ -28,15 +28,15 @@ function run([rex, token, session, block]) {
 
     for (;;) {
         $.NSThread.sleepForTimeInterval(0.1);
+        // Rex leaves key modes when it loses focus, so Annotate mode ends here too.
+        const app = workspace.frontmostApplication;
+        if (app.isNil() || ObjC.unwrap(app.bundleIdentifier) !== bundle) return;
         const count = Number(clipboard.changeCount);
         let text;
         if (count !== seen) {
             seen = count;
-            const app = workspace.frontmostApplication;
-            if (!app.isNil() && ObjC.unwrap(app.bundleIdentifier) === bundle) {
-                const copied = ObjC.unwrap(clipboard.stringForType($.NSPasteboardTypeString));
-                if (typeof copied === "string" && copied.trim()) text = copied;
-            }
+            const copied = ObjC.unwrap(clipboard.stringForType($.NSPasteboardTypeString));
+            if (typeof copied === "string" && copied.trim()) text = copied;
         }
         if (text === undefined && Date.now() < heartbeat) continue;
         if (!Number($.NSRunningApplication.runningApplicationsWithBundleIdentifier(bundle).count) || !report(text)) return;
